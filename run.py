@@ -310,6 +310,7 @@ def update_hidden_word(guess):
         end_time = time.time()
         game_win = True
         game_over = True
+        time.sleep(1)
         game_display(WIN_HEADER)
 
 
