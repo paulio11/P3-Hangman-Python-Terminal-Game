@@ -363,6 +363,7 @@ def scoreboard():
     input('Press ENTER to return to the menu...')
     main_menu()
 
+
 def update_scoreboard():
     '''
     Updates scoreboard sheet.
@@ -456,8 +457,11 @@ def main_menu():
     print(f'{left_text : <26}{middle_text : ^26}{right_text : >28}')
     print('-' * 80)
     choice = input('Select an option: ')
+    valid_choices = ['1', '2', '3']
 
-    if choice == '1':
+    if choice not in valid_choices:
+        main_menu()
+    elif choice == '1':
         main()
     elif choice == '2':
         instructions()
