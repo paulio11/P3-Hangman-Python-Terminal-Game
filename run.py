@@ -280,8 +280,10 @@ def update_hidden_word(guess):
 
 def calculate_score():
     '''
-    Calculates player score based on lives, word length, and time.
+    Calculates and prints player score based on lives, word length, and time.
     '''
+    global seconds, score
+
     seconds = math.floor(end_time - start_time)
     score = math.ceil((len(game_word) * 500) + (player_lives * 1000) / seconds)
 
@@ -292,12 +294,24 @@ def calculate_score():
     print(f'{left_text : <30}{mid_text : ^20}{right_text : >30}')
 
 
+def update_scoreboard():
+    '''
+    Updates scoreboard sheet.
+    '''
+    name = input('Please enter your name: ').capitalize()[:10]
+    score_sheet = SHEET.worksheet('scoreboard')
+
+    score_sheet.append_row([name, score, seconds, game_word])
+
+
 def game_display(header):
     '''
     Prints the following:
     - Header based on current state.
     - Hangman word.
     - Current game stage.
+
+    At the end of a game shows text based on win or fail.
     '''
     global game_over
 
@@ -312,12 +326,13 @@ def game_display(header):
     if game_win:
         calculate_score()
         print('-' * TERM_WIDTH)
+        update_scoreboard()
     elif game_over and game_win is False:
         left_text = 'Oh dear you died!'
         right_text = f'The mystery word was {game_word}.'
         print(f'{left_text : <40}{right_text : >40}')
         print('-' * TERM_WIDTH)
-        input('Press ANY key to return to the menu...')
+        input('Press ENTER to return to the menu...')
         main()
 
 
