@@ -168,10 +168,12 @@ HANGMAN_STAGES = [
 def set_word():
     '''
     Picks a random word from Google sheet.
+    Makes string of _ based on length of random word.
     '''
     word_list = WORD_SHEET.col_values(1)
-    global game_word
+    global game_word, hidden_word
     game_word = random.choice(word_list)
+    hidden_word = '_' * len(game_word)
 
 
 def user_input():
@@ -180,7 +182,7 @@ def user_input():
     - Displays guessed letters and player health.
     - Takes input from player as guess.
     - Passes valid guess to check_guess function.
-    - Calls game_display to redraw game.    
+    - Calls game_display to redraw game.
     '''
     guessed_letters = []
     global game_over, player_lives
@@ -221,6 +223,7 @@ def check_guess(guess):
 
     if guess in game_word:
         print('Correct guess!')
+        update_hidden_word(guess)
     elif guess not in game_word and game_stage != 8:
         print('Incorrect guess!')
         player_lives -= 1
@@ -230,7 +233,19 @@ def check_guess(guess):
         player_lives -= 1
         game_stage += 1
         game_over = True
-        # still shows one heart
+        # to fix - still shows one heart
+
+
+def update_hidden_word(guess):
+    '''
+    Takes a correct guess and updates hidden word.
+    '''
+    # to do - still only works for the first occurrence of letter in word
+    global hidden_word    
+    hidden_word_arr = list(hidden_word)
+    pos_of_guess = game_word.index(guess)
+    hidden_word_arr[pos_of_guess] = guess
+    hidden_word = ''.join(hidden_word_arr)
 
 
 def game_display(header):
@@ -241,8 +256,6 @@ def game_display(header):
     - Current game stage.
     '''
     os.system('clear')
-    hidden_word = '_____'
-
     print(header)
     print('Mystery word: '.center(TERM_WIDTH))
     print()
