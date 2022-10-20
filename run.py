@@ -2,9 +2,12 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import random
+import os
+import time
+
 
 # Constant Variables
-TERMINAL_WIDTH = 80
+TERM_WIDTH = 80
 
 
 # Variables for Google Sheet
@@ -26,5 +29,52 @@ def set_word():
     Creates a string of _ to match length.
     '''
     word_list = WORD_SHEET.col_values(1)
+    global game_word
     game_word = random.choice(word_list)
-    hidden_word = '_' * len(game_word)
+
+
+def user_input():
+    '''
+    Takes input from player
+    '''
+    guessed_letters = []
+    game_over = False
+    player_lives = 9
+
+    while game_over is False:
+
+        guessed_letters_str = ' '.join(guessed_letters)
+        life_bar = ' ♥' * player_lives
+
+        os.system('clear')
+
+        print(f'Guessed letters: {guessed_letters_str : <43}{life_bar : >18}')
+        print('-' * TERM_WIDTH)
+        guess = input('Guess a letter: ').upper()
+
+        if guess == 'HELP':
+            print(game_word)
+        elif not guess.isalpha() or len(guess) > 1:
+            print('Invalid guess')
+        elif guess in guessed_letters:
+            print('Letter already guessed, try another')
+        else:
+            guessed_letters.append(guess)
+            guessed_letters.sort()
+            check_guess(guess)
+            
+        time.sleep(1)
+
+
+def check_guess(guess):
+    '''
+    Checks guess.
+    '''
+    if guess in game_word:
+        print('Correct guess!')
+    else:
+        print('Incorrect guess!')
+
+
+set_word()
+user_input()
