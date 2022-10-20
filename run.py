@@ -367,13 +367,15 @@ def update_scoreboard():
     '''
     Updates scoreboard sheet.
     '''
+    global name
+
     name = input('Please enter your name: ').capitalize()[:10]
     score_sheet = SHEET.worksheet('scoreboard')
 
     score_sheet.append_row([name, score, seconds, game_word])
 
-    # win condition ends here
-    
+    end_screen()
+
 
 def game_display(header):
     '''
@@ -405,6 +407,24 @@ def game_display(header):
         print('-' * 80)
         input('Press ENTER to return to the menu...')
         main_menu()
+
+
+def end_screen():
+    '''
+    Confirms name entry into scoreboard.
+    Thanks player and returns to menu after input.
+    '''
+    global name
+
+    os.system('clear')
+
+    print('\n' * 12)
+    cprint(f'Thank you for playing {name}!')
+    cprint('Your name and score have been uploaded.')
+    print()    
+    cprint('Press ENTER to return to the menu...')
+    input('')
+    main_menu()
 
 
 def instructions():
