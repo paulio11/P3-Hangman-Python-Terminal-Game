@@ -12,6 +12,8 @@ TERM_WIDTH = 80
 
 # Game Variables
 game_stage = 0
+game_win = False
+game_over = False
 
 
 # Variables for Google Sheet
@@ -188,7 +190,6 @@ def user_input():
     global game_over, player_lives
 
     guessed_letters = []
-    game_over = False
     player_lives = 9
 
     while game_over is False:
@@ -236,10 +237,10 @@ def check_guess(guess):
         game_stage += 1
     else:
         # Game fail trigger
-        print('Game over!')
         player_lives -= 1
         game_stage += 1
         game_over = True
+        game_display(FAIL_HEADER)
 
     time.sleep(1)
     
@@ -253,7 +254,7 @@ def update_hidden_word(guess):
     If hidden_word complete -> game_over = True.
     '''
     # to do - still only works for the first occurrence of letter in word
-    global hidden_word, game_over
+    global hidden_word, game_over, game_win
 
     hidden_word_arr = list(hidden_word)
     pos_of_guess = game_word.index(guess)
@@ -262,6 +263,7 @@ def update_hidden_word(guess):
 
     # Game win trigger
     if '_' not in hidden_word:
+        game_win = True
         game_over = True
         game_display(WIN_HEADER)
 
@@ -273,6 +275,8 @@ def game_display(header):
     - Hangman word.
     - Current game stage.
     '''
+    global game_over
+    
     os.system('clear')
 
     print(header)
@@ -280,6 +284,27 @@ def game_display(header):
     print()
     print(f'{hidden_word} ({len(game_word)})'.center(TERM_WIDTH))
     print(HANGMAN_STAGES[game_stage])
+
+    if game_win:
+        print('game win')
+        time.sleep(5)
+        reset_game()
+    elif game_over and game_win is False:
+        print('game over')
+
+
+def reset_game():
+    '''
+    Resets variables and calls main.
+    '''
+    global player_lives, game_over, game_win, game_stage
+
+    game_stage = 0
+    game_win = False
+    game_over = False
+    player_lives = 9
+
+    main()
 
 
 def main():
