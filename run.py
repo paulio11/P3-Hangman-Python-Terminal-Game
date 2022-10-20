@@ -50,8 +50,8 @@ FAIL_HEADER = '''
    ▒██░▄▄▄░▒██  ▀█▄  ▓██    ▓██░▒███      ▒██░  ██▒ ▓██  █▒░▒███   ▓██ ░▄█ ▒
    ░▓█  ██▓░██▄▄▄▄██ ▒██    ▒██ ▒▓█  ▄    ▒██   ██░  ▒██ █░░▒▓█  ▄ ▒██▀▀█▄
    ░▒▓███▀▒ ▓█   ▓██▒▒██▒   ░██▒░▒████▒   ░ ████▓▒░   ▒▀█░  ░▒████▒░██▓ ▒██▒
-    ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░  ░░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
-     ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒
+    ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░   ░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
+     ░   ░   ▒   ▒▒ ░░  ░        ░ ░  ░     ░ ▒ ▒      ░░   ░ ░  ░  ░▒ ░ ▒
          ░       ▒                 ░          ░         ░     ░      ░
 '''
 SCOREBOARD_TITLE = '''
@@ -178,7 +178,7 @@ MENU_ART = '''
 
                            __________   ▄▄▄▄▄▄
                           | HELP ME! |  |    █
-                           ¯¯¯¯¯¯¯¯¯¯\       █            ▒▒▒▒▒▒▒▒
+                           ¯¯¯¯¯¯¯¯¯¯\  °    █            ▒▒▒▒▒▒▒▒
                █▄██▄█                  \O/   █           ▒▒▌▒▒▐▒▒▌▒
       █▄█▄█▄█▄█▐█┼██▌█▄█▄█▄█▄█          |    █            ▒▀▄▒▌▄▀▒
       ███┼█████▐████▌█████┼███         / \   █               ██
@@ -375,8 +375,9 @@ def update_scoreboard():
     global name
 
     name = input('Please enter your name: ').capitalize()[:10]
+    print('Updating scoreboard...')
+    
     score_sheet = SHEET.worksheet('scoreboard')
-
     score_sheet.append_row([name, score, seconds, game_word])
 
     end_screen()
@@ -466,10 +467,12 @@ def main_menu():
     if choice not in valid_choices:
         main_menu()
     elif choice == '1':
+        print('Loading game...')
         main()
     elif choice == '2':
         instructions()
     elif choice == '3':
+        print('Loading scoreboard...')
         scoreboard()
 
 
