@@ -187,10 +187,11 @@ def user_input():
     - Passes valid guess to check_guess function.
     - Calls game_display to redraw game.
     '''
-    global game_over, player_lives
+    global game_over, player_lives, start_time
 
     guessed_letters = []
     player_lives = 9
+    start_time = time.time()
 
     while game_over is False:
 
@@ -226,7 +227,7 @@ def check_guess(guess):
     Updates varibles as necessary.
     Calls game_display to redraw game.
     '''
-    global player_lives, game_stage, game_over
+    global player_lives, game_stage, game_over, end_time
 
     if guess in game_word:
         print('Correct guess!')
@@ -237,6 +238,7 @@ def check_guess(guess):
         game_stage += 1
     else:
         # Game fail trigger
+        end_time = time.time()
         player_lives -= 1
         game_stage += 1
         game_over = True
@@ -254,7 +256,7 @@ def update_hidden_word(guess):
     If hidden_word complete -> game_over = True.
     '''
     # to do - still only works for the first occurrence of letter in word
-    global hidden_word, game_over, game_win
+    global hidden_word, game_over, game_win, end_time
 
     hidden_word_arr = list(hidden_word)
     pos_of_guess = game_word.index(guess)
@@ -263,6 +265,7 @@ def update_hidden_word(guess):
 
     # Game win trigger
     if '_' not in hidden_word:
+        end_time = time.time()
         game_win = True
         game_over = True
         game_display(WIN_HEADER)
@@ -286,11 +289,12 @@ def game_display(header):
     print(HANGMAN_STAGES[game_stage])
 
     if game_win:
-        print('game win')
-        time.sleep(5)
-        reset_game()
+        print('-' * TERM_WIDTH)
+        seconds = end_time - start_time
+        print(seconds)
     elif game_over and game_win is False:
-        print('game over')
+        print('-' * TERM_WIDTH)
+        # print('game over')
 
 
 def reset_game():
