@@ -58,6 +58,14 @@ FAIL_HEADER = '''
      ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░     ░ ▒ ▒░    ░ ░░   ░ ░  ░  ░▒ ░ ▒
          ░       ▒                 ░          ░         ░     ░      ░
 '''
+SCOREBOARD_TITLE = '''
+            _____                    _                         _ 
+           / ____|                  | |                       | |
+          | (___   ___ ___  _ __ ___| |__   ___   __ _ _ __ __| |
+           \___ \ / __/ _ \| '__/ _ \ '_ \ / _ \ / _` | '__/ _` |
+           ____) | (_| (_) | | |  __/ |_) | (_) | (_| | | | (_| |
+          |_____/ \___\___/|_|  \___|_.__/ \___/ \__,_|_|  \__,_|
+ '''
 HANGMAN_STAGES = [
     '''
 
@@ -286,7 +294,6 @@ def calculate_score():
 
     seconds = math.floor(end_time - start_time)
     score = math.ceil((len(game_word) * 500) + (player_lives * 1000) / seconds)
-
     left_text = 'Congratulations!'
     mid_text = f'SCORE: {score}'
     right_text = f'TIME: {seconds}s'
@@ -300,8 +307,6 @@ def scoreboard():
     Sorts scores in descending order.
     For loop prints the array vaules line by line.
     '''
-    os.system('clear')
-
     score_sheet = SHEET.worksheet('scoreboard')
     score_data = score_sheet.get_all_values()
     score_slice = score_data[-1:-11:-1]
@@ -312,7 +317,10 @@ def scoreboard():
     score_h = 'SCORE'
     time_h = 'TIME'
 
-    print('LAST 10 SCORES'.center(TERM_WIDTH))
+    os.system('clear')
+
+    print(SCOREBOARD_TITLE)
+    print()
     print(f' {rank_h : <6}{name_h : <15}{score_h : <10}{time_h : <10}')
     print('=====================================')
     for line in score_slice:
