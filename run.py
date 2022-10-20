@@ -363,7 +363,8 @@ def scoreboard():
         rank += 1
 
     print()
-    input('Press ENTER to return to the menu...')
+    cprint('Press ENTER to return to the menu...')
+    input('')
     main_menu()
 
 
