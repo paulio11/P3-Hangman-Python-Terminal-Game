@@ -55,13 +55,23 @@ FAIL_HEADER = '''
          ░       ▒                 ░          ░         ░     ░      ░
 '''
 SCOREBOARD_TITLE = '''
-            _____                    _                         _ 
-           / ____|                  | |                       | |
-          | (___   ___ ___  _ __ ___| |__   ___   __ _ _ __ __| |
-           \___ \ / __/ _ \| '__/ _ \ '_ \ / _ \ / _` | '__/ _` |
-           ____) | (_| (_) | | |  __/ |_) | (_) | (_| | | | (_| |
-          |_____/ \___\___/|_|  \___|_.__/ \___/ \__,_|_|  \__,_|
+             _____                    _                         _
+            / ____|                  | |                       | |
+           | (___   ___ ___  _ __ ___| |__   ___   __ _ _ __ __| |
+            \___ \ / __/ _ \| '__/ _ \ '_ \ / _ \ / _` | '__/ _` |
+            ____) | (_| (_) | | |  __/ |_) | (_) | (_| | | | (_| |
+           |_____/ \___\___/|_|  \___|_.__/ \___/ \__,_|_|  \__,_|
  '''
+INSTRUCTIONS_TITLE = '''
+            _   _                 _____      ______ _
+           | | | |               |_   _|     | ___ \ |
+           | |_| | _____      __   | | ___   | |_/ / | __ _ _   _
+           |  _  |/ _ \ \ /\ / /   | |/ _ \  |  __/| |/ _` | | | |
+           | | | | (_) \ V  V /    | | (_) | | |   | | (_| | |_| |
+           \_| |_/\___/ \_/\_/     \_/\___/  \_|   |_|\__,_|\__, |
+                                                             __/ |
+                                                            |___/
+'''
 HANGMAN_STAGES = [
     '''
 
@@ -165,6 +175,7 @@ HANGMAN_STAGES = [
 '''
 ]
 MENU_ART = '''
+
                            __________   ▄▄▄▄▄▄
                           | HELP ME! |  |    █
                            ¯¯¯¯¯¯¯¯¯¯\       █            ▒▒▒▒▒▒▒▒
@@ -350,8 +361,7 @@ def scoreboard():
 
     print()
     input('Press ENTER to return to the menu...')
-    main()  
-
+    main_menu()
 
 def update_scoreboard():
     '''
@@ -363,7 +373,7 @@ def update_scoreboard():
     score_sheet.append_row([name, score, seconds, game_word])
 
     # win condition ends here
-
+    
 
 def game_display(header):
     '''
@@ -394,7 +404,19 @@ def game_display(header):
         print(f'{left_text : <40}{right_text : >40}')
         print('-' * 80)
         input('Press ENTER to return to the menu...')
-        main()
+        main_menu()
+
+
+def instructions():
+    '''
+    Print game instructions.
+    '''
+    os.system('clear')
+
+    print(INSTRUCTIONS_TITLE)
+    print('This is how to play.....')
+    input('Press ENTER to return to the menu...')
+    main_menu()
 
 
 def main_menu():
@@ -409,7 +431,7 @@ def main_menu():
     cprint('===================')
     print(MENU_ART)
     left_text = '1. Play Hangman'
-    middle_text = '2. Instructions'
+    middle_text = '2. How To Play'
     right_text = '3. Scoreboard'
     print(f'{left_text : <26}{middle_text : ^26}{right_text : >28}')
     print('-' * 80)
@@ -427,11 +449,10 @@ def main():
     '''
     Main program function.
     '''
-    main_menu()
-    # reset_game()
-    # set_word()
-    # game_display(GAME_HEADER)
-    # user_input()
+    reset_game()
+    set_word()
+    game_display(GAME_HEADER)
+    user_input()
 
 
-main()
+main_menu()
