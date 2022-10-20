@@ -311,11 +311,14 @@ def game_display(header):
 
     if game_win:
         calculate_score()
-        print('-' * TERM_WIDTH)        
-    elif game_over and game_win is False:
-        print(f'Oh dear you died! The mystery word was: {game_word}.')
         print('-' * TERM_WIDTH)
-        # print('game over')
+    elif game_over and game_win is False:
+        left_text = 'Oh dear you died!'
+        right_text = f'The mystery word was {game_word}.'
+        print(f'{left_text : <40}{right_text : >40}')
+        print('-' * TERM_WIDTH)
+        input('Press ANY key to return to the menu...')
+        main()
 
 
 def main():
