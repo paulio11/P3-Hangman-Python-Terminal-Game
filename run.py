@@ -285,7 +285,7 @@ def check_guess(guess):
         game_display(FAIL_HEADER)
 
     # time.sleep(1)
-    
+
     if game_over is False:
         game_display(GAME_HEADER)
 
@@ -295,12 +295,14 @@ def update_hidden_word(guess):
     Takes a correct guess and updates hidden_word.
     If hidden_word complete -> game_over = True.
     '''
-    # to do - still only works for the first occurrence of letter in word
     global hidden_word, game_over, game_win, end_time
 
+    positions = [i for i, a in enumerate(game_word) if a == guess]
     hidden_word_arr = list(hidden_word)
-    pos_of_guess = game_word.index(guess)
-    hidden_word_arr[pos_of_guess] = guess
+
+    for num in positions:
+        hidden_word_arr[num] = guess
+
     hidden_word = ''.join(hidden_word_arr)
 
     # Game win trigger
@@ -352,7 +354,7 @@ def scoreboard():
 
     cprint(headers)
     cprint('=================================')
-    
+
     for line in score_slice:
         row = f'{rank : <6}{line[0] : <12}{line[1] : <9}{line[2] : <5}'
         cprint(row)
@@ -422,7 +424,7 @@ def end_screen():
     print('\n' * 12)
     cprint(f'Thank you for playing {name}!')
     cprint('Your name and score have been uploaded.')
-    print()    
+    print()
     cprint('Press ENTER to return to the menu...')
     input('')
     main_menu()
