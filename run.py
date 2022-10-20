@@ -294,6 +294,33 @@ def calculate_score():
     print(f'{left_text : <30}{mid_text : ^20}{right_text : >30}')
 
 
+def scoreboard():
+    '''
+    Slices last 10 scores from sheet.
+    Sorts scores in descending order.
+    For loop prints the array vaules line by line.
+    '''
+    os.system('clear')
+
+    score_sheet = SHEET.worksheet('scoreboard')
+    score_data = score_sheet.get_all_values()
+    score_slice = score_data[-1:-11:-1]
+    score_slice = sorted(score_slice, key=lambda x: int(x[1]), reverse=True)
+    rank = 1
+    rank_h = 'RANK'
+    name_h = 'NAME'
+    score_h = 'SCORE'
+    time_h = 'TIME'
+
+    print('LAST 10 SCORES'.center(TERM_WIDTH))
+    print(f' {rank_h : <6}{name_h : <15}{score_h : <10}{time_h : <10}')
+    print('=====================================')
+    for line in score_slice:
+        print(f' {rank : <6}{line[0] : <15}{line[1] : <10}{line[2] : <10}')
+        print('-------------------------------------')
+        rank += 1
+
+
 def update_scoreboard():
     '''
     Updates scoreboard sheet.
@@ -302,6 +329,8 @@ def update_scoreboard():
     score_sheet = SHEET.worksheet('scoreboard')
 
     score_sheet.append_row([name, score, seconds, game_word])
+
+    # win condition ends here
 
 
 def game_display(header):
@@ -340,10 +369,11 @@ def main():
     '''
     Main program function.
     '''
-    reset_game()
-    set_word()
-    game_display(GAME_HEADER)
-    user_input()
+    scoreboard()
+    # reset_game()
+    # set_word()
+    # game_display(GAME_HEADER)
+    # user_input()
 
 
 main()
