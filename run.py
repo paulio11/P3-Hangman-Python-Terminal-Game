@@ -250,6 +250,13 @@ def game_display(header):
     print(HANGMAN_STAGES[game_stage])
 
 
-set_word()
-game_display(GAME_HEADER)
-user_input()
+def main():
+    '''
+    Main program function.
+    '''
+    set_word()
+    game_display(GAME_HEADER)
+    user_input()
+
+
+main()
