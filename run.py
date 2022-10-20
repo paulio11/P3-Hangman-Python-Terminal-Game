@@ -11,12 +11,6 @@ import math
 TERM_WIDTH = 80
 
 
-# Game Variables
-game_stage = 0
-game_win = False
-game_over = False
-
-
 # Variables for Google Sheet
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -168,6 +162,18 @@ HANGMAN_STAGES = [
 ]
 
 
+def reset_game():
+    '''
+    Resets variables.
+    '''
+    global player_lives, game_over, game_win, game_stage
+
+    game_stage = 0
+    game_win = False
+    game_over = False
+    player_lives = 9
+
+
 def set_word():
     '''
     Picks a random word from Google sheet.
@@ -204,7 +210,7 @@ def user_input():
         guess = input('Guess a letter: ').upper()
 
         def redraw():
-            time.sleep(1)
+            # time.sleep(1)
             game_display(GAME_HEADER)
 
         if guess == 'HELP':
@@ -245,7 +251,7 @@ def check_guess(guess):
         game_over = True
         game_display(FAIL_HEADER)
 
-    time.sleep(1)
+    # time.sleep(1)
     
     if game_over is False:
         game_display(GAME_HEADER)
@@ -307,28 +313,16 @@ def game_display(header):
         calculate_score()
         print('-' * TERM_WIDTH)        
     elif game_over and game_win is False:
+        print(f'Oh dear you died! The mystery word was: {game_word}.')
         print('-' * TERM_WIDTH)
         # print('game over')
-
-
-def reset_game():
-    '''
-    Resets variables and calls main.
-    '''
-    global player_lives, game_over, game_win, game_stage
-
-    game_stage = 0
-    game_win = False
-    game_over = False
-    player_lives = 9
-
-    main()
 
 
 def main():
     '''
     Main program function.
     '''
+    reset_game()
     set_word()
     game_display(GAME_HEADER)
     user_input()
