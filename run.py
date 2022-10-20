@@ -39,6 +39,7 @@ def user_input():
     '''
     guessed_letters = []
     game_over = False
+    global player_lives
     player_lives = 9
 
     while game_over is False:
@@ -62,7 +63,7 @@ def user_input():
             guessed_letters.append(guess)
             guessed_letters.sort()
             check_guess(guess)
-            
+
         time.sleep(1)
 
 
@@ -73,7 +74,10 @@ def check_guess(guess):
     if guess in game_word:
         print('Correct guess!')
     else:
-        print('Incorrect guess!')
+        print('Incorrect guess!')        
+        global player_lives
+        player_lives -= 1
+        # to do: update game stage
 
 
 set_word()
