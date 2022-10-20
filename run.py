@@ -235,14 +235,16 @@ def check_guess(guess):
         player_lives -= 1
         game_stage += 1
     else:
+        # Game fail trigger
         print('Game over!')
         player_lives -= 1
         game_stage += 1
         game_over = True
-        # to fix - still shows one heart
 
     time.sleep(1)
-    game_display(GAME_HEADER)
+    
+    if game_over is False:
+        game_display(GAME_HEADER)
 
 
 def update_hidden_word(guess):
@@ -258,6 +260,7 @@ def update_hidden_word(guess):
     hidden_word_arr[pos_of_guess] = guess
     hidden_word = ''.join(hidden_word_arr)
 
+    # Game win trigger
     if '_' not in hidden_word:
         game_over = True
         game_display(WIN_HEADER)
