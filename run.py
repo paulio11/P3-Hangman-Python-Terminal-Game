@@ -7,10 +7,6 @@ import time
 import math
 
 
-# Constant Variables
-TERM_WIDTH = 80
-
-
 # Variables for Google Sheet
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -168,6 +164,25 @@ HANGMAN_STAGES = [
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 '''
 ]
+MENU_ART = '''
+                           __________   ▄▄▄▄▄▄
+                          | HELP ME! |  |    █
+                           ¯¯¯¯¯¯¯¯¯¯\       █            ▒▒▒▒▒▒▒▒
+               █▄██▄█                  \O/   █           ▒▒▌▒▒▐▒▒▌▒
+      █▄█▄█▄█▄█▐█┼██▌█▄█▄█▄█▄█          |    █            ▒▀▄▒▌▄▀▒
+      ███┼█████▐████▌█████┼███         / \   █               ██
+░░░░░░█████████▐████▌█████████░░░░░░████████████░░░░░░░░░░░░░██░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+'''
+
+
+def cprint(a):
+    '''
+    Take parameter and print it center aligned.
+    '''
+    terminal_width = 80
+
+    print(a.center(terminal_width))
 
 
 def reset_game():
@@ -213,7 +228,7 @@ def user_input():
         life_bar = ' ♥' * player_lives
 
         print(f'Guessed letters: {guessed_letters_str : <43}{life_bar : >18}')
-        print('-' * TERM_WIDTH)
+        print('-' * 80)
         guess = input('Guess a letter: ').upper()
 
         def redraw():
@@ -319,24 +334,23 @@ def scoreboard():
     os.system('clear')
 
     print(SCOREBOARD_TITLE)
-    print('Last 5 Scores'.center(TERM_WIDTH))
+    cprint('Last 5 Scores')
     print()
 
     headers = f'{rank_h : <6}{name_h : <12}{score_h : <9}{time_h : <5}'
 
-    print(headers.center(TERM_WIDTH))
-    print('================================='.center(TERM_WIDTH))
+    cprint(headers)
+    cprint('=================================')
     
     for line in score_slice:
         row = f'{rank : <6}{line[0] : <12}{line[1] : <9}{line[2] : <5}'
-        print(row.center(TERM_WIDTH))
-        print('---------------------------------'.center(TERM_WIDTH))
+        cprint(row)
+        cprint('---------------------------------')
         rank += 1
 
     print()
     input('Press ENTER to return to the menu...')
-    main()
-    
+    main()  
 
 
 def update_scoreboard():
@@ -365,32 +379,59 @@ def game_display(header):
     os.system('clear')
 
     print(header)
-    print('Mystery word: '.center(TERM_WIDTH))
+    cprint('Mystery word: ')
     print()
-    print(f'{hidden_word} ({len(game_word)})'.center(TERM_WIDTH))
+    cprint(f'{hidden_word} ({len(game_word)})')
     print(HANGMAN_STAGES[game_stage])
 
     if game_win:
         calculate_score()
-        print('-' * TERM_WIDTH)
+        print('-' * 80)
         update_scoreboard()
     elif game_over and game_win is False:
         left_text = 'Oh dear you died!'
         right_text = f'The mystery word was {game_word}.'
         print(f'{left_text : <40}{right_text : >40}')
-        print('-' * TERM_WIDTH)
+        print('-' * 80)
         input('Press ENTER to return to the menu...')
         main()
+
+
+def main_menu():
+    '''
+    Draw main menu.
+    Take user input and run relevant function.
+    '''
+    os.system('clear')
+
+    print(GAME_HEADER)
+    cprint('WELCOME TO HANGMAN!')
+    cprint('===================')
+    print(MENU_ART)
+    left_text = '1. Play Hangman'
+    middle_text = '2. Instructions'
+    right_text = '3. Scoreboard'
+    print(f'{left_text : <26}{middle_text : ^26}{right_text : >28}')
+    print('-' * 80)
+    choice = input('Select an option: ')
+
+    if choice == '1':
+        main()
+    elif choice == '2':
+        instructions()
+    elif choice == '3':
+        scoreboard()
 
 
 def main():
     '''
     Main program function.
     '''
-    reset_game()
-    set_word()
-    game_display(GAME_HEADER)
-    user_input()
+    main_menu()
+    # reset_game()
+    # set_word()
+    # game_display(GAME_HEADER)
+    # user_input()
 
 
 main()
