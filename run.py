@@ -406,7 +406,7 @@ def game_display(header):
         print('-' * 80)
         update_scoreboard()
     elif game_over and game_win is False:
-        left_text = 'Oh dear you died!'
+        left_text = 'Oh dear he died!'
         right_text = f'The mystery word was {game_word}.'
         print(f'{left_text : <40}{right_text : >40}')
         print('-' * 80)
