@@ -10,6 +10,10 @@ import time
 TERM_WIDTH = 80
 
 
+# Game Variables
+game_stage = 0
+
+
 # Variables for Google Sheet
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -38,8 +42,8 @@ def user_input():
     Takes input from player
     '''
     guessed_letters = []
+    global game_over, player_lives
     game_over = False
-    global player_lives
     player_lives = 9
 
     while game_over is False:
@@ -71,13 +75,20 @@ def check_guess(guess):
     '''
     Checks guess.
     '''
+    global player_lives, game_stage, game_over
+
     if guess in game_word:
         print('Correct guess!')
-    else:
-        print('Incorrect guess!')        
-        global player_lives
+    elif guess not in game_word and game_stage != 8:
+        print('Incorrect guess!')
         player_lives -= 1
-        # to do: update game stage
+        game_stage += 1
+    else:
+        print('Game over!')
+        player_lives -= 1
+        game_stage += 1
+        game_over = True
+        # still shows one heart
 
 
 set_word()
