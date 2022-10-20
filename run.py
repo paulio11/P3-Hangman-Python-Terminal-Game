@@ -243,7 +243,7 @@ def user_input():
         guess = input('Guess a letter: ').upper()
 
         def redraw():
-            # time.sleep(1)
+            time.sleep(1)
             game_display(GAME_HEADER)
 
         if guess == 'HELP':
@@ -284,7 +284,7 @@ def check_guess(guess):
         game_over = True
         game_display(FAIL_HEADER)
 
-    # time.sleep(1)
+    time.sleep(1)
 
     if game_over is False:
         game_display(GAME_HEADER)
