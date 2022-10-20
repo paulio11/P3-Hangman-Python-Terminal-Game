@@ -205,7 +205,6 @@ def user_input():
     global game_over, player_lives, start_time
 
     guessed_letters = []
-    player_lives = 9
     start_time = time.time()
 
     while game_over is False:
@@ -303,13 +302,13 @@ def calculate_score():
 
 def scoreboard():
     '''
-    Slices last 10 scores from sheet.
+    Slices last 5 scores from sheet.
     Sorts scores in descending order.
-    For loop prints the array vaules line by line.
+    A for loop prints the array vaules line by line.
     '''
     score_sheet = SHEET.worksheet('scoreboard')
     score_data = score_sheet.get_all_values()
-    score_slice = score_data[-1:-11:-1]
+    score_slice = score_data[-1:-6:-1]
     score_slice = sorted(score_slice, key=lambda x: int(x[1]), reverse=True)
     rank = 1
     rank_h = 'RANK'
@@ -320,13 +319,24 @@ def scoreboard():
     os.system('clear')
 
     print(SCOREBOARD_TITLE)
+    print('Last 5 Scores'.center(TERM_WIDTH))
     print()
-    print(f' {rank_h : <6}{name_h : <15}{score_h : <10}{time_h : <10}')
-    print('=====================================')
+
+    headers = f'{rank_h : <6}{name_h : <12}{score_h : <9}{time_h : <5}'
+
+    print(headers.center(TERM_WIDTH))
+    print('================================='.center(TERM_WIDTH))
+    
     for line in score_slice:
-        print(f' {rank : <6}{line[0] : <15}{line[1] : <10}{line[2] : <10}')
-        print('-------------------------------------')
+        row = f'{rank : <6}{line[0] : <12}{line[1] : <9}{line[2] : <5}'
+        print(row.center(TERM_WIDTH))
+        print('---------------------------------'.center(TERM_WIDTH))
         rank += 1
+
+    print()
+    input('Press ENTER to return to the menu...')
+    main()
+    
 
 
 def update_scoreboard():
@@ -377,11 +387,10 @@ def main():
     '''
     Main program function.
     '''
-    scoreboard()
-    # reset_game()
-    # set_word()
-    # game_display(GAME_HEADER)
-    # user_input()
+    reset_game()
+    set_word()
+    game_display(GAME_HEADER)
+    user_input()
 
 
 main()
