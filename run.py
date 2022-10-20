@@ -170,8 +170,9 @@ def set_word():
     Picks a random word from Google sheet.
     Makes string of _ based on length of random word.
     '''
-    word_list = WORD_SHEET.col_values(1)
     global game_word, hidden_word
+
+    word_list = WORD_SHEET.col_values(1)
     game_word = random.choice(word_list)
     hidden_word = '_' * len(game_word)
 
@@ -184,8 +185,9 @@ def user_input():
     - Passes valid guess to check_guess function.
     - Calls game_display to redraw game.
     '''
-    guessed_letters = []
     global game_over, player_lives
+
+    guessed_letters = []
     game_over = False
     player_lives = 9
 
@@ -198,26 +200,30 @@ def user_input():
         print('-' * TERM_WIDTH)
         guess = input('Guess a letter: ').upper()
 
+        def redraw():
+            time.sleep(1)
+            game_display(GAME_HEADER)
+
         if guess == 'HELP':
             print(game_word)
+            redraw()
         elif not guess.isalpha() or len(guess) > 1:
             print('Invalid guess')
+            redraw()
         elif guess in guessed_letters:
             print('Letter already guessed, try another')
+            redraw()
         else:
             guessed_letters.append(guess)
             guessed_letters.sort()
             check_guess(guess)
-
-        time.sleep(1)
-
-        game_display(GAME_HEADER)
 
 
 def check_guess(guess):
     '''
     Checks for correct or incorrect guess.
     Updates varibles as necessary.
+    Calls game_display to redraw game.
     '''
     global player_lives, game_stage, game_over
 
@@ -235,10 +241,14 @@ def check_guess(guess):
         game_over = True
         # to fix - still shows one heart
 
+    time.sleep(1)
+    game_display(GAME_HEADER)
+
 
 def update_hidden_word(guess):
     '''
-    Takes a correct guess and updates hidden word.
+    Takes a correct guess and updates hidden_word.
+    If hidden_word complete -> game_over = True.
     '''
     # to do - still only works for the first occurrence of letter in word
     global hidden_word, game_over
@@ -250,6 +260,7 @@ def update_hidden_word(guess):
 
     if '_' not in hidden_word:
         game_over = True
+        game_display(WIN_HEADER)
 
 
 def game_display(header):
