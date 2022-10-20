@@ -4,6 +4,7 @@ from google.oauth2.service_account import Credentials
 import random
 import os
 import time
+import math
 
 
 # Constant Variables
@@ -271,6 +272,20 @@ def update_hidden_word(guess):
         game_display(WIN_HEADER)
 
 
+def calculate_score():
+    '''
+    Calculates player score based on lives, word length, and time.
+    '''
+    seconds = math.floor(end_time - start_time)
+    score = math.ceil((len(game_word) * 500) + (player_lives * 1000) / seconds)
+
+    left_text = 'Congratulations!'
+    mid_text = f'SCORE: {score}'
+    right_text = f'TIME: {seconds}s'
+
+    print(f'{left_text : <30}{mid_text : ^20}{right_text : >30}')
+
+
 def game_display(header):
     '''
     Prints the following:
@@ -279,7 +294,7 @@ def game_display(header):
     - Current game stage.
     '''
     global game_over
-    
+
     os.system('clear')
 
     print(header)
@@ -289,9 +304,8 @@ def game_display(header):
     print(HANGMAN_STAGES[game_stage])
 
     if game_win:
-        print('-' * TERM_WIDTH)
-        seconds = end_time - start_time
-        print(seconds)
+        calculate_score()
+        print('-' * TERM_WIDTH)        
     elif game_over and game_win is False:
         print('-' * TERM_WIDTH)
         # print('game over')
