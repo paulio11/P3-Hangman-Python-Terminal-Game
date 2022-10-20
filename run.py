@@ -241,11 +241,15 @@ def update_hidden_word(guess):
     Takes a correct guess and updates hidden word.
     '''
     # to do - still only works for the first occurrence of letter in word
-    global hidden_word    
+    global hidden_word, game_over
+
     hidden_word_arr = list(hidden_word)
     pos_of_guess = game_word.index(guess)
     hidden_word_arr[pos_of_guess] = guess
     hidden_word = ''.join(hidden_word_arr)
+
+    if '_' not in hidden_word:
+        game_over = True
 
 
 def game_display(header):
@@ -256,6 +260,7 @@ def game_display(header):
     - Current game stage.
     '''
     os.system('clear')
+
     print(header)
     print('Mystery word: '.center(TERM_WIDTH))
     print()
