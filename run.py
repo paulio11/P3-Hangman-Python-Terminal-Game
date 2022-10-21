@@ -237,9 +237,9 @@ def user_input():
     while game_over is False:
 
         guessed_letters_str = ' '.join(guessed_letters)
-        life_bar = f'{Fore.RED} ♥' * player_lives
+        life_bar = ' ♥' * player_lives
 
-        print(f'Guessed letters: {guessed_letters_str : <45}{life_bar : >16}')
+        print(f'Guessed letters: {guessed_letters_str : <45}{life_bar : >18}')
         print('-' * 80)
         guess = input('Guess a letter: ').upper()
 
