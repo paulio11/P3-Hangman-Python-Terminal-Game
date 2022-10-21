@@ -333,7 +333,7 @@ def scoreboard():
     '''
     Slices last 5 scores from sheet.
     Sorts scores in descending order.
-    A for loop prints the array vaules line by line.
+    A for loop prints the array values line by line.
     '''
     score_sheet = SHEET.worksheet('scoreboard')
     score_data = score_sheet.get_all_values()
@@ -348,18 +348,16 @@ def scoreboard():
     os.system('clear')
 
     print(SCOREBOARD_TITLE)
-    cprint('Last 5 Scores')
+    cprint('Last 5 Scores:')
     print()
-
     headers = f'{rank_h : <6}{name_h : <12}{score_h : <9}{time_h : <5}'
-
     cprint(headers)
-    cprint('=================================')
+    cprint('=' * 33)
 
     for line in score_slice:
         row = f'{rank : <6}{line[0] : <12}{line[1] : <9}{line[2] : <5}'
         cprint(row)
-        cprint('---------------------------------')
+        cprint('-' * 33)
         rank += 1
 
     print()
@@ -376,7 +374,7 @@ def update_scoreboard():
 
     name = input('Please enter your name: ').capitalize()[:10]
     print('Updating scoreboard...')
-    
+
     score_sheet = SHEET.worksheet('scoreboard')
     score_sheet.append_row([name, score, seconds, game_word])
 
@@ -389,8 +387,7 @@ def game_display(header):
     - Header based on current state.
     - Hangman word.
     - Current game stage.
-
-    At the end of a game shows text based on win or fail.
+    At the end of a game, shows text based on win or fail.
     '''
     global game_over
 
@@ -465,6 +462,8 @@ def main_menu():
     valid_choices = ['1', '2', '3']
 
     if choice not in valid_choices:
+        print('Invalid selection, try again.')
+        time.sleep(1)
         main_menu()
     elif choice == '1':
         print('Loading game...')
