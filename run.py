@@ -5,7 +5,8 @@ import random
 import os
 import time
 import math
-
+from colorama import init, Fore
+init(autoreset=True)
 
 # Variables for Google Sheet
 SCOPE = [
@@ -236,9 +237,9 @@ def user_input():
     while game_over is False:
 
         guessed_letters_str = ' '.join(guessed_letters)
-        life_bar = ' ♥' * player_lives
+        life_bar = f'{Fore.RED} ♥' * player_lives
 
-        print(f'Guessed letters: {guessed_letters_str : <43}{life_bar : >18}')
+        print(f'Guessed letters: {guessed_letters_str : <45}{life_bar : >16}')
         print('-' * 80)
         guess = input('Guess a letter: ').upper()
 
@@ -250,10 +251,10 @@ def user_input():
             print(game_word)
             redraw()
         elif not guess.isalpha() or len(guess) > 1:
-            print('Invalid guess')
+            print(f'{Fore.RED}Invalid guess')
             redraw()
         elif guess in guessed_letters:
-            print('Letter already guessed, try another')
+            print(f'{Fore.RED}Letter already guessed, try another')
             redraw()
         else:
             guessed_letters.append(guess)
@@ -270,10 +271,10 @@ def check_guess(guess):
     global player_lives, game_stage, game_over, end_time
 
     if guess in game_word:
-        print('Correct guess!')
+        print(f'{Fore.GREEN}Correct guess!')
         update_hidden_word(guess)
     elif guess not in game_word and game_stage != 8:
-        print('Incorrect guess!')
+        print(f'{Fore.RED}Incorrect guess!')
         player_lives -= 1
         game_stage += 1
     else:
@@ -377,9 +378,9 @@ def update_scoreboard():
     while True:
         name = input('Please enter your name: ').capitalize()[:10]
         if not name.isalpha():
-            print('Invalid name, try again...')
+            print(f'{Fore.RED}Invalid name, try again...')
         elif name == '':
-            print('Invalid name, try again...')
+            print(f'{Fore.RED}Invalid name, try again...')
         else:
             break
 
@@ -472,7 +473,7 @@ def main_menu():
     valid_choices = ['1', '2', '3']
 
     if choice not in valid_choices:
-        print('Invalid selection, try again.')
+        print(f'{Fore.RED}Invalid selection, try again.')
         time.sleep(1)
         main_menu()
     elif choice == '1':
