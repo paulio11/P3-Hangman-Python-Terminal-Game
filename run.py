@@ -373,6 +373,16 @@ def update_scoreboard():
     global name
 
     name = input('Please enter your name: ').capitalize()[:10]
+    
+    while True:
+        name = input('Please enter your name: ').capitalize()[:10]
+        if not name.isalpha():
+            print('Invalid name, try again...')
+        elif name == '':
+            print('Invalid name, try again...')
+        else:
+            break
+
     print('Updating scoreboard...')
 
     score_sheet = SHEET.worksheet('scoreboard')
