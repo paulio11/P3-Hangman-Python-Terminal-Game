@@ -1,3 +1,8 @@
+'''
+Hangman python termina name by Paul Young
+'''
+
+
 # Imports
 import gspread
 from google.oauth2.service_account import Credentials
@@ -374,7 +379,7 @@ def update_scoreboard():
     global name
 
     name = input('Please enter your name: ').capitalize()[:10]
-    
+
     while True:
         name = input('Please enter your name: ').capitalize()[:10]
         if not name.isalpha():
