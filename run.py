@@ -259,7 +259,7 @@ def user_input():
             print(f'{Fore.RED}Invalid guess')
             redraw()
         elif guess in guessed_letters:
-            print(f'{Fore.RED}Letter already guessed, try another')
+            print(f'{Fore.YELLOW}Letter already guessed, try another')
             redraw()
         else:
             guessed_letters.append(guess)
@@ -438,7 +438,8 @@ def end_screen():
     print('\n' * 12)
     cprint(f'Thank you for playing {name}!')
     cprint('Your name and score have been uploaded.')
-    print()
+    print('\n' * 9)
+    print('-' * 80)
     input('Press ENTER to return to the menu...')
     main_menu()
 
