@@ -366,9 +366,9 @@ def scoreboard():
         cprint('-' * 33)
         rank += 1
 
-    print()
-    cprint('Press ENTER to return to the menu...')
-    input('')
+    print('\n' * 2)
+    print('-' * 80)
+    input('Press ENTER to return to the menu...')
     main_menu()
 
 
@@ -377,8 +377,6 @@ def update_scoreboard():
     Updates scoreboard sheet.
     '''
     global name
-
-    name = input('Please enter your name: ').capitalize()[:10]
 
     while True:
         name = input('Please enter your name: ').capitalize()[:10]
@@ -441,8 +439,7 @@ def end_screen():
     cprint(f'Thank you for playing {name}!')
     cprint('Your name and score have been uploaded.')
     print()
-    cprint('Press ENTER to return to the menu...')
-    input('')
+    input('Press ENTER to return to the menu...')
     main_menu()
 
 
@@ -453,7 +450,8 @@ def instructions():
     os.system('clear')
 
     print(INSTRUCTIONS_TITLE)
-    print('This is how to play.....')
+    print('\n' * 14)
+    print('-' * 80)
     input('Press ENTER to return to the menu...')
     main_menu()
 
