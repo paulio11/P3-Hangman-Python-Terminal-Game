@@ -335,6 +335,15 @@ def calculate_score():
     print(f'{left_text : <30}{mid_text : ^20}{right_text : >30}')
 
 
+def bottom_input():
+    '''
+    Prints a line of dashes and waits for user input before returning to the menu.
+    '''
+    print('-' * 80)
+    input('Press ENTER to return to the menu...')
+    main_menu()
+
+
 def scoreboard():
     '''
     Slices last 5 scores from sheet.
@@ -367,9 +376,7 @@ def scoreboard():
         rank += 1
 
     print('\n' * 2)
-    print('-' * 80)
-    input('Press ENTER to return to the menu...')
-    main_menu()
+    bottom_input()
 
 
 def update_scoreboard():
@@ -439,9 +446,7 @@ def end_screen():
     cprint(f'Thank you for playing {name}!')
     cprint('Your name and score have been uploaded.')
     print('\n' * 9)
-    print('-' * 80)
-    input('Press ENTER to return to the menu...')
-    main_menu()
+    bottom_input()
 
 
 def instructions():
@@ -452,9 +457,7 @@ def instructions():
 
     print(INSTRUCTIONS_TITLE)
     print('\n' * 14)
-    print('-' * 80)
-    input('Press ENTER to return to the menu...')
-    main_menu()
+    bottom_input()
 
 
 def main_menu():
