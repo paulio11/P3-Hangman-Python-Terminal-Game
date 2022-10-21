@@ -1,5 +1,5 @@
 '''
-Hangman python termina name by Paul Young
+Hangman python terminal name by Paul Young
 '''
 
 
@@ -10,8 +10,10 @@ import random
 import os
 import time
 import math
+import pyfiglet
 from colorama import init, Fore
 init(autoreset=True)
+
 
 # Variables for Google Sheet
 SCOPE = [
@@ -59,24 +61,6 @@ FAIL_HEADER = '''
     ░▒   ▒  ▒▒   ▓▒█░░ ▒░   ░   ░░ ▒░ ░   ░ ▒░▒░▒░    ░ ▐░  ░░ ▒░ ░░ ▒▓ ░▒▓░
      ░   ░   ▒   ▒▒ ░░  ░        ░ ░  ░     ░ ▒ ▒      ░░   ░ ░  ░  ░▒ ░ ▒
          ░       ▒                 ░          ░         ░     ░      ░
-'''
-SCOREBOARD_TITLE = '''
-             _____                    _                         _
-            / ____|                  | |                       | |
-           | (___   ___ ___  _ __ ___| |__   ___   __ _ _ __ __| |
-            \___ \ / __/ _ \| '__/ _ \ '_ \ / _ \ / _` | '__/ _` |
-            ____) | (_| (_) | | |  __/ |_) | (_) | (_| | | | (_| |
-           |_____/ \___\___/|_|  \___|_.__/ \___/ \__,_|_|  \__,_|
- '''
-INSTRUCTIONS_TITLE = '''
-            _   _                 _____      ______ _
-           | | | |               |_   _|     | ___ \ |
-           | |_| | _____      __   | | ___   | |_/ / | __ _ _   _
-           |  _  |/ _ \ \ /\ / /   | |/ _ \  |  __/| |/ _` | | | |
-           | | | | (_) \ V  V /    | | (_) | | |   | | (_| | |_| |
-           \_| |_/\___/ \_/\_/     \_/\___/  \_|   |_|\__,_|\__, |
-                                                             __/ |
-                                                            |___/
 '''
 HANGMAN_STAGES = [
     '''
@@ -234,7 +218,7 @@ def user_input():
     - Passes valid guess to check_guess function.
     - Calls game_display to redraw game.
     '''
-    global game_over, player_lives, start_time
+    global game_over, game_win, player_lives, start_time
 
     guessed_letters = []
     start_time = time.time()
@@ -337,7 +321,7 @@ def calculate_score():
 
 def bottom_input():
     '''
-    Prints a line of dashes and waits for user input before returning to the menu.
+    Prints a line of '-' and waits for user input before returning to the menu.
     '''
     print('-' * 80)
     input('Press ENTER to return to the menu...')
@@ -362,7 +346,8 @@ def scoreboard():
 
     os.system('clear')
 
-    print(SCOREBOARD_TITLE)
+    print()
+    print(pyfiglet.figlet_format('Scoreboard', justify='center', width=80))
     cprint('Last 5 Scores:')
     print()
     headers = f'{rank_h : <6}{name_h : <12}{score_h : <9}{time_h : <5}'
@@ -455,8 +440,10 @@ def instructions():
     '''
     os.system('clear')
 
-    print(INSTRUCTIONS_TITLE)
-    print('\n' * 14)
+    # print(INSTRUCTIONS_TITLE)
+    print()
+    print(pyfiglet.figlet_format('How To Play', justify='center', width=80))
+    print('\n' * 16)
     bottom_input()
 
 

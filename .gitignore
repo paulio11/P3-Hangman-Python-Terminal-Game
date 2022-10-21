@@ -8,3 +8,4 @@ node_modules/
 .github/
 creds.json
 notes.txt
+test.py
