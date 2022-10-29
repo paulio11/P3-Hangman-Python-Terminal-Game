@@ -189,26 +189,6 @@ def cprint(a):
     print(a.center(terminal_width))
 
 
-# def print_fast(fast):
-#     """
-#     Creates a fast moving typing effect for the user.
-#     """
-#     for letter in fast:
-#         sys.stdout.write(letter)
-#         sys.stdout.flush()
-#         time.sleep(0.01)
-
-
-# def print_slow(slow):
-#     """
-#     Creates a slow moving typing effect for the user.
-#     """
-#     for letter in slow:
-#         sys.stdout.write(letter)
-#         sys.stdout.flush()
-#         time.sleep(0.05)
-
-
 # Game functions
 def reset_game():
     '''
@@ -524,7 +504,16 @@ def instructions():
 
     print()
     print(pyfiglet.figlet_format('How To Play', justify='center', width=80))
-    print('\n' * 16)
+    cprint('The goal of Hangman is to solve the mystery word.\n')
+    cprint('_ _ _ _ _ _ _\n')
+    cprint('Guess one letter at the time.')
+    cprint('If you guess correctly, the letter will appear in the word.\n')
+    cprint('H A _ G _ A _\n')
+    cprint('If you guess incorrectly, the stage will progress.')
+    cprint('After 9 incorrect guesses the game will be over.\n')
+    cprint('At any point you can guess the whole word.\n')
+    cprint('H A N G M A N')
+    print('\n')
     bottom_input()
 
 
