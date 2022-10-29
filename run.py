@@ -396,7 +396,7 @@ def bottom_input():
     main_menu()
 
 
-def scoreboard():
+def last_five_scores():
     '''
     Slices last 5 scores from sheet.
     Sorts scores in descending order.
@@ -415,7 +415,7 @@ def scoreboard():
     os.system('clear')
 
     print()
-    print(pyfiglet.figlet_format('Scoreboard', justify='center', width=80))
+    print(pyfiglet.figlet_format('Latest Scores', justify='center', width=80))
     cprint('Last 5 Scores:')
     print()
     headers = f'{rank_h : <6}{name_h : <12}{score_h : <9}{time_h : <5}'
@@ -423,6 +423,41 @@ def scoreboard():
     cprint('=' * 33)
 
     for line in score_slice:
+        row = f'{rank : <6}{line[0] : <12}{line[1] : <9}{line[2] : <5}'
+        cprint(row)
+        cprint('-' * 33)
+        rank += 1
+
+    print('\n' * 2)
+    bottom_input()
+
+
+def highscores():
+    '''
+    Slices last 5 scores from sheet.
+    Sorts scores in descending order.
+    A for loop prints the array values line by line.
+    '''
+    score_sheet = SHEET.worksheet('scoreboard')
+    score_data = score_sheet.get_all_values()
+    score_sorted = sorted(score_data, key=lambda x: int(x[1]), reverse=True)
+    rank = 1
+    rank_h = 'RANK'
+    name_h = 'NAME'
+    score_h = 'SCORE'
+    time_h = 'TIME'
+
+    os.system('clear')
+
+    print()
+    print(pyfiglet.figlet_format('High Scores', justify='center', width=80))
+    cprint('All time top 5:')
+    print()
+    headers = f'{rank_h : <6}{name_h : <12}{score_h : <9}{time_h : <5}'
+    cprint(headers)
+    cprint('=' * 33)
+
+    for line in score_sorted[:5]:
         row = f'{rank : <6}{line[0] : <12}{line[1] : <9}{line[2] : <5}'
         cprint(row)
         cprint('-' * 33)
@@ -541,10 +576,10 @@ def main_menu():
         instructions()
     elif choice == '3':
         print('Loading scoreboard...')
-        scoreboard()
+        highscores()
     elif choice == '4':
         print('Loading scoreboard...')
-        scoreboard()
+        last_five_scores()
 
 
 def main():
