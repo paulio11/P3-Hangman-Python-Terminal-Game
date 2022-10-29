@@ -221,7 +221,8 @@ def reset_game():
 
 def game_win_trigger():
     '''
-
+    Function called when the player has won the game.
+    From guessing the word, or guessing every letter.
     '''
     global player_lives, game_stage, game_over, end_time, game_win
 
