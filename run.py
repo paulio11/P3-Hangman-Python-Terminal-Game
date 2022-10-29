@@ -1,5 +1,5 @@
 '''
-Hangman python terminal name by Paul Young
+Hangman python terminal game by Paul Young
 '''
 
 
@@ -15,7 +15,7 @@ from colorama import init, Fore
 init(autoreset=True)
 
 
-# Variables for Google Sheet
+# Variables for gspread
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -25,7 +25,6 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_words')
-WORD_SHEET = SHEET.worksheet('word_sheet')
 
 
 # ASCII art
@@ -177,6 +176,7 @@ MENU_ART = '''
 '''
 
 
+# Print functions
 def cprint(a):
     '''
     Take parameter and print it center aligned.
@@ -186,6 +186,27 @@ def cprint(a):
     print(a.center(terminal_width))
 
 
+# def print_fast(fast):
+#     """
+#     Creates a fast moving typing effect for the user.
+#     """
+#     for letter in fast:
+#         sys.stdout.write(letter)
+#         sys.stdout.flush()
+#         time.sleep(0.01)
+
+
+# def print_slow(slow):
+#     """
+#     Creates a slow moving typing effect for the user.
+#     """
+#     for letter in slow:
+#         sys.stdout.write(letter)
+#         sys.stdout.flush()
+#         time.sleep(0.05)
+
+
+# Game functions
 def reset_game():
     '''
     Resets variables.
@@ -200,14 +221,51 @@ def reset_game():
 
 def set_word():
     '''
+    Takes input from user to select a category.
     Picks a random word from Google sheet.
     Makes string of _ based on length of random word.
     '''
-    global game_word, hidden_word
+    global game_word, hidden_word, category
 
-    word_list = WORD_SHEET.col_values(1)
+    os.system('clear')
+
+    print(pyfiglet.figlet_format('Category', justify='center', width=80))
+    print('1: Halloween')
+    print('2: Pokemon')
+    print('3: Countries')
+    print('4: Animals')
+    print('5: Disney Movies')
+    print('\n' * 12)
+    print('-' * 80)
+    category = input('Select a category: ')
+
+    valid_choices = ['1', '2', '3', '4', '5']
+    word_sheet = SHEET.worksheet('word_sheet')
+
+    if category not in valid_choices:
+        print(f'{Fore.RED}Invalid selection, try again.')
+        time.sleep(1)
+        set_word()
+    elif category == '1':
+        word_list = word_sheet.col_values(1)
+        category = 'Halloween Word'
+    elif category == '2':
+        word_list = word_sheet.col_values(2)
+        category = 'Pokemon'
+    elif category == '3':
+        word_list = word_sheet.col_values(3)
+        category = 'Country'
+    elif category == '4':
+        word_list = word_sheet.col_values(4)
+        category = 'Animal'
+    elif category == '5':
+        word_list = word_sheet.col_values(5)
+        category = 'Disney Movie'
+
     game_word = random.choice(word_list)
     hidden_word = '_' * len(game_word)
+    
+    print('Loading game...')
 
 
 def user_input():
@@ -395,12 +453,11 @@ def game_display(header):
     - Current game stage.
     At the end of a game, shows text based on win or fail.
     '''
-    global game_over
 
     os.system('clear')
 
     print(header)
-    cprint('Mystery word: ')
+    cprint(f'Mystery {category}:')
     print()
     cprint(f'{hidden_word} ({len(game_word)})')
     print(HANGMAN_STAGES[game_stage])
@@ -411,12 +468,10 @@ def game_display(header):
         update_scoreboard()
     elif game_over and game_win is False:
         left_text = 'Oh dear he died!'
-        right_text = f'The mystery word was {game_word}.'
+        right_text = f'The Mystery {category} was {game_word}.'
         print(f'{left_text : <40}{right_text : >40}')
-        print('-' * 80)
-        input('Press ENTER to return to the menu...')
-        main_menu()
-
+        bottom_input()
+        
 
 def end_screen():
     '''
@@ -471,7 +526,6 @@ def main_menu():
         time.sleep(1)
         main_menu()
     elif choice == '1':
-        print('Loading game...')
         main()
     elif choice == '2':
         instructions()
