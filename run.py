@@ -219,6 +219,19 @@ def reset_game():
     player_lives = 9
 
 
+def game_win_trigger():
+    '''
+
+    '''
+    global player_lives, game_stage, game_over, end_time, game_win
+
+    end_time = time.time()
+    game_win = True
+    game_over = True
+    time.sleep(1)
+    game_display(WIN_HEADER)
+
+
 def set_word():
     '''
     Takes input from user to select a category.
@@ -288,7 +301,7 @@ def user_input():
 
         print(f'Guessed letters: {guessed_letters_str : <45}{life_bar : >18}')
         print('-' * 80)
-        guess = input('Guess a letter: ').upper()
+        guess = input('Guess a letter OR the word: ').upper()
 
         def redraw():
             time.sleep(1)
@@ -297,6 +310,8 @@ def user_input():
         if guess == 'HELP':
             print(game_word)
             redraw()
+        elif guess == game_word:
+            game_win_trigger()
         elif not guess.isalpha() or len(guess) > 1:
             print(f'{Fore.RED}Invalid guess')
             redraw()
@@ -325,12 +340,7 @@ def check_guess(guess):
         player_lives -= 1
         game_stage += 1
     else:
-        # Game fail trigger
-        end_time = time.time()
-        player_lives -= 1
-        game_stage += 1
-        game_over = True
-        game_display(FAIL_HEADER)
+        game_win_trigger()
 
     time.sleep(1)
 
