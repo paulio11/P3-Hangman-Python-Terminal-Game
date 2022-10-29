@@ -26,6 +26,9 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_words')
 
+score_sheet = SHEET.worksheet('scoreboard')
+score_data = score_sheet.get_all_values()
+
 
 # ASCII art
 GAME_HEADER = '''
@@ -363,13 +366,8 @@ def update_hidden_word(guess):
 
     hidden_word = ''.join(hidden_word_arr)
 
-    # Game win trigger
     if '_' not in hidden_word:
-        end_time = time.time()
-        game_win = True
-        game_over = True
-        time.sleep(1)
-        game_display(WIN_HEADER)
+        game_win_trigger()
 
 
 def calculate_score():
@@ -396,16 +394,10 @@ def bottom_input():
     main_menu()
 
 
-def last_five_scores():
+def draw_table(scores, heading, heading2):
     '''
-    Slices last 5 scores from sheet.
-    Sorts scores in descending order.
-    A for loop prints the array values line by line.
+    Draws score table with data from last_five_scores() and highscores().
     '''
-    score_sheet = SHEET.worksheet('scoreboard')
-    score_data = score_sheet.get_all_values()
-    score_slice = score_data[-1:-6:-1]
-    score_slice = sorted(score_slice, key=lambda x: int(x[1]), reverse=True)
     rank = 1
     rank_h = 'RANK'
     name_h = 'NAME'
@@ -415,14 +407,14 @@ def last_five_scores():
     os.system('clear')
 
     print()
-    print(pyfiglet.figlet_format('Latest Scores', justify='center', width=80))
-    cprint('Last 5 Scores:')
+    print(pyfiglet.figlet_format(heading, justify='center', width=80))
+    cprint(heading2)
     print()
     headers = f'{rank_h : <6}{name_h : <12}{score_h : <9}{time_h : <5}'
     cprint(headers)
     cprint('=' * 33)
 
-    for line in score_slice:
+    for line in scores:
         row = f'{rank : <6}{line[0] : <12}{line[1] : <9}{line[2] : <5}'
         cprint(row)
         cprint('-' * 33)
@@ -430,6 +422,19 @@ def last_five_scores():
 
     print('\n' * 2)
     bottom_input()
+
+
+def last_five_scores():
+    '''
+    Slices last 5 scores from sheet.
+    Sorts scores in descending order.
+    A for loop prints the array values line by line.
+    '''
+
+    score_slice = score_data[-1:-6:-1]
+    score_slice = sorted(score_slice, key=lambda x: int(x[1]), reverse=True)
+
+    draw_table(score_slice, 'Latest Scores', 'Last 5 Scores:')
 
 
 def highscores():
@@ -438,33 +443,10 @@ def highscores():
     Sorts scores in descending order.
     A for loop prints the array values line by line.
     '''
-    score_sheet = SHEET.worksheet('scoreboard')
-    score_data = score_sheet.get_all_values()
+
     score_sorted = sorted(score_data, key=lambda x: int(x[1]), reverse=True)
-    rank = 1
-    rank_h = 'RANK'
-    name_h = 'NAME'
-    score_h = 'SCORE'
-    time_h = 'TIME'
 
-    os.system('clear')
-
-    print()
-    print(pyfiglet.figlet_format('High Scores', justify='center', width=80))
-    cprint('All time top 5:')
-    print()
-    headers = f'{rank_h : <6}{name_h : <12}{score_h : <9}{time_h : <5}'
-    cprint(headers)
-    cprint('=' * 33)
-
-    for line in score_sorted[:5]:
-        row = f'{rank : <6}{line[0] : <12}{line[1] : <9}{line[2] : <5}'
-        cprint(row)
-        cprint('-' * 33)
-        rank += 1
-
-    print('\n' * 2)
-    bottom_input()
+    draw_table(score_sorted[:5], 'High Scores', 'All Time Top 5 Scores:')
 
 
 def update_scoreboard():
