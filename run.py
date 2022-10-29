@@ -323,7 +323,12 @@ def check_guess(guess):
         player_lives -= 1
         game_stage += 1
     else:
-        game_win_trigger()
+       # Game fail trigger
+        end_time = time.time()
+        player_lives -= 1
+        game_stage += 1
+        game_over = True
+        game_display(FAIL_HEADER)
 
     time.sleep(1)
 
