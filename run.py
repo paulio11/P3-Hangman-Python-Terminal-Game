@@ -229,7 +229,6 @@ def game_win_trigger():
     end_time = time.time()
     game_win = True
     game_over = True
-    time.sleep(1)
     game_display(WIN_HEADER)
 
 
@@ -278,7 +277,7 @@ def set_word():
 
     game_word = random.choice(word_list)
     hidden_word = '_' * len(game_word)
-    
+
     print('Loading game...')
 
 
@@ -506,7 +505,6 @@ def instructions():
     '''
     os.system('clear')
 
-    # print(INSTRUCTIONS_TITLE)
     print()
     print(pyfiglet.figlet_format('How To Play', justify='center', width=80))
     print('\n' * 16)
@@ -524,13 +522,14 @@ def main_menu():
     cprint('WELCOME TO HANGMAN!')
     cprint('===================')
     print(MENU_ART)
-    left_text = '1. Play Hangman'
-    middle_text = '2. How To Play'
-    right_text = '3. Scoreboard'
-    print(f'{left_text : <26}{middle_text : ^26}{right_text : >28}')
+    l_text = '1. Play Hangman'
+    mid_text = '2. How To Play'
+    mid_text_2 = '3. High Scores'
+    r_text = '4. Last 5 Scores'
+    print(f'{l_text : <20}{mid_text : ^20}{mid_text_2 : ^20}{r_text : >20}')
     print('-' * 80)
     choice = input('Select an option: ')
-    valid_choices = ['1', '2', '3']
+    valid_choices = ['1', '2', '3', '4']
 
     if choice not in valid_choices:
         print(f'{Fore.RED}Invalid selection, try again.')
@@ -541,6 +540,9 @@ def main_menu():
     elif choice == '2':
         instructions()
     elif choice == '3':
+        print('Loading scoreboard...')
+        scoreboard()
+    elif choice == '4':
         print('Loading scoreboard...')
         scoreboard()
 
