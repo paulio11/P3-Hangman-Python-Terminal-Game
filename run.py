@@ -348,7 +348,7 @@ def set_word():
     Picks a random word from Google sheet.
     Makes string of underscores based on length of random word.
     '''
-    global GAME_WORD, CATEGORY
+    global GAME_WORD, CATEGORY, HIDDEN_WORD
 
     os.system('clear')
 
@@ -386,6 +386,7 @@ def set_word():
         CATEGORY = 'Disney Movie'
 
     GAME_WORD = random.choice(word_list)
+    HIDDEN_WORD = '_' * len(GAME_WORD)
 
     print('Loading game...')
 
@@ -401,8 +402,6 @@ def game_display(header):
     global HIDDEN_WORD
 
     os.system('clear')
-
-    HIDDEN_WORD = '_' * len(GAME_WORD)
 
     print(header)
     cprint(f'Mystery {CATEGORY}:')
@@ -431,7 +430,7 @@ def user_input():
     - Passes correct word guess to game_win_trigger function.
     - Calls game_display to redraw game.
     '''
-    global START_TIME
+    global START_TIME, HIDDEN_WORD
 
     guessed_letters = []
     START_TIME = time.time()
@@ -453,6 +452,7 @@ def user_input():
             print(GAME_WORD)
             redraw()
         elif guess == GAME_WORD:
+            HIDDEN_WORD = GAME_WORD
             game_win_trigger()
         elif not guess.isalpha() or len(guess) > 1:
             print(f'{Fore.RED}Invalid guess')
