@@ -26,7 +26,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('hangman_words')
 SCORE_SHEET = SHEET.worksheet('scoreboard')
-SCORE_DATA = SCORE_SHEET.get_all_values()
 
 
 # ASCII art
@@ -271,7 +270,10 @@ def last_five_scores():
     Passes to draw_table function.
     '''
 
-    score_slice = SCORE_DATA[-1:-6:-1]
+    score_data = SCORE_SHEET.get_all_values()
+    # Slices off last 5 rows.
+    score_slice = score_data[-1:-6:-1]
+    # Sorts data by second column (the score) descending.
     score_slice = sorted(score_slice, key=lambda x: int(x[1]), reverse=True)
 
     draw_table(score_slice, 'Latest Scores', 'Last 5 Scores:')
@@ -283,8 +285,10 @@ def highscores():
     Passes top 5 to draw_table function.
     '''
 
-    score_sorted = sorted(SCORE_DATA, key=lambda x: int(x[1]), reverse=True)
-
+    score_data = SCORE_SHEET.get_all_values()
+    # Sorts data by second column (the score) descending.
+    score_sorted = sorted(score_data, key=lambda x: int(x[1]), reverse=True)
+    # The [:5] is the top five scores.
     draw_table(score_sorted[:5], 'High Scores', 'All Time Top 5 Scores:')
 
 
@@ -358,11 +362,13 @@ def set_word():
     print('3: Countries')
     print('4: Animals')
     print('5: Disney Movies')
-    print('\n' * 12)
+    print('6: Video Games')
+    print('\n' * 11)
     print('-' * 80)
     choice = input('Select a category: ')
+    print('Loading game...')
 
-    valid_choices = ['1', '2', '3', '4', '5']
+    valid_choices = ['1', '2', '3', '4', '5', '6']
     word_sheet = SHEET.worksheet('word_sheet')
 
     if choice not in valid_choices:
@@ -384,11 +390,12 @@ def set_word():
     elif choice == '5':
         word_list = word_sheet.col_values(5)
         CATEGORY = 'Disney Movie'
+    elif choice == '6':
+        word_list = word_sheet.col_values(6)
+        CATEGORY = 'Video Game'
 
     GAME_WORD = random.choice(word_list)
     HIDDEN_WORD = '_' * len(GAME_WORD)
-
-    print('Loading game...')
 
 
 def game_display(header):
@@ -399,7 +406,6 @@ def game_display(header):
     - Current game stage.
     At the end of a game, shows text based on win or fail.
     '''
-    global HIDDEN_WORD
 
     os.system('clear')
 
@@ -417,7 +423,6 @@ def game_display(header):
         left_text = 'Oh dear he died!'
         right_text = f'The Mystery {CATEGORY} was {GAME_WORD}.'
         print(f'{left_text : <40}{right_text : >40}')
-
         bottom_input()
 
 
@@ -445,6 +450,9 @@ def user_input():
         guess = input('Guess a letter OR the word: ').upper()
 
         def redraw():
+            '''
+            Redraws game area after a guess.
+            '''
             time.sleep(1)
             game_display(GAME_HEADER)
 
@@ -482,7 +490,7 @@ def check_guess(guess):
         PLAYER_LIVES -= 1
         GAME_STAGE += 1
     else:
-        # Game fail trigger
+        # Game fail trigger.
         END_TIME = time.time()
         PLAYER_LIVES -= 1
         GAME_STAGE += 1
@@ -492,6 +500,7 @@ def check_guess(guess):
     time.sleep(1)
 
     if GAME_OVER is False:
+        # Redraws game area after checking guess.
         game_display(GAME_HEADER)
 
 
@@ -502,14 +511,16 @@ def update_hidden_word(guess):
     '''
     global HIDDEN_WORD
 
+    # Gets all postions of guess in word as an array.
     positions = [i for i, a in enumerate(GAME_WORD) if a == guess]
+    # Turn the hidden word into an array.
     hidden_word_arr = list(HIDDEN_WORD)
-
+    # Change value of position in array to guess.
     for num in positions:
         hidden_word_arr[num] = guess
-
+    # Turns the hidden word array back into a string.
     HIDDEN_WORD = ''.join(hidden_word_arr)
-
+    # If hidden word is complete, the game is won.
     if '_' not in HIDDEN_WORD:
         game_win_trigger()
 
@@ -552,13 +563,12 @@ def update_scoreboard():
         NAME = input('Please enter your name: ').capitalize()[:10]
         if not NAME.isalpha():
             print(f'{Fore.RED}Invalid name, try again...')
-        elif NAME == '':  # check if this is necessary
-            print(f'{Fore.RED}Invalid name, try again...')
         else:
             break
 
     print('Updating scoreboard...')
 
+    # Updates google sheet with new row.
     SCORE_SHEET.append_row([NAME, SCORE, SECONDS, GAME_WORD])
 
     end_screen()
