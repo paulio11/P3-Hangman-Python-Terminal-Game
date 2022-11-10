@@ -1,8 +1,8 @@
 # Hangman - Python Terminal Game
 
-![Image of website on multiple devices](#)
+![Image of website on multiple devices](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/hangman-hero-img.png)
 
-[Link to live GitHub deployment](#)
+[Link to live GitHub deployment](https://py-hangman-py.herokuapp.com/)
 
 ## Contents 
 
