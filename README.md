@@ -475,17 +475,20 @@ And of course more simple things such as a larger word list and category choice.
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Deployment
+
 ### Download Code
+To download a copy of this project and all required assets click the Code button above the file tree at the top. Then Download ZIP. Alternatively click [here](https://github.com/paulio11/project-3/archive/refs/heads/main.zip).
+
 ### Deployment to Heroku
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Credits and Acknowledgements
 
 ### Text
-- This project contains a list of Disney movies, and Pokémon names, all belong to their respective owners Disney and The Pokémon Company.
+This project contains a list of Disney movies, and Pokémon names, all belong to their respective owners Disney and The Pokémon Company.
 
 ### Images
-- A single image is used in this project. See [above](#).
+A single image is used in this project. See [above](#).
 
 ### Code
 - Information provided in [this thread](https://stackoverflow.com/questions/30076145/how-to-sort-list-of-lists-by-highest-number) on Stack Overflow was used to sort data pulled from my scoreboard spreadsheet.
