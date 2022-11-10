@@ -41,6 +41,7 @@
 9. [Technologies]()
     1. [Main Languages Used]()
     2. [Other]()
+    3. [Python Libraries]()
 10. [Testing]()
     1. [Testing User Stores]()
     2. [Manual Testing]()
@@ -106,8 +107,9 @@ As the designer I want:
 
 ## Features
 ### User Input and Feedback
-This user input design and positioning are constant throughout the program. Always below a dotted line and on the same line in the terminal.
-Positive feedback is represented with green text. Negative feedback or invalid input is represented with red text. This functionality is part of the [colorama](https://pypi.org/project/colorama/) package. Consistency improves the experience for the user.
+- This user input design and positioning are constant throughout the program. Always below a dotted line and on the same line in the terminal.
+- Positive feedback is represented with green text. Negative feedback or invalid input is represented with red text. This functionality is part of the [colorama](https://pypi.org/project/colorama/) package. 
+- Consistency of position and colour improves the experience for the user, hopefully producing a positive emotional response.
 
 ![Coloured feedback](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-feedback.png)
 
@@ -413,6 +415,9 @@ And of course more simple things such as a larger word list and category choice.
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Bugs and Development Issues
+- The most common issue a user will come across is after a guessed letter. There is a second delay in place so the user can see feedback in the form of "Correct guess", "Incorrect guess" etc. During this second, any input such as another letter guess will be invisible and then cause the next input to be invalid.  To provide some context to the user the invalid guess error message was changed to **"Invalid guess, OR you guessed too fast"**. Ideally, a solution to this would have been good. A way to clear any unwanted inputs before asking the user for their next guess would be necessary to achieve this.
+- For a while early in development if a letter appeared in the game word more than once, only the first instance would reveal itself to the user after a correct guess. This was due to the if statement only applying to the first instance of the guessed letter it came across. This meant I could not use words with repeated letters. I later fixed this by using the `enumerate` object to find every position as an array, then a for loop to loop through the word to fill it in correctly. This is part of the `update_hidden_word()` function.
+
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Technologies
@@ -425,7 +430,7 @@ And of course more simple things such as a larger word list and category choice.
 
 ### Other
 - [GitHub](https://github.com/)
-    - Used to store files, changes, and host the page.
+    - Used to store files, changes, and host page assets.
 - [GitPod](https://www.gitpod.io/)
     - Used to write, comment code, and commit to GitHub.
 - [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template)
@@ -434,6 +439,30 @@ And of course more simple things such as a larger word list and category choice.
     - Used to edit images, resizing and optimizing them for use on a website.
 - [Am I Responsive](https://ui.dev/amiresponsive)
     - Used to create the hero image at the top of this readme.
+- [Google Sheets](https://www.google.co.uk/sheets/about/)
+    - Used to store the database of words and categories, as well as user scores.
+- [Heroku](https://www.heroku.com/)
+    - Used to deploy the project.
+- [Lucid Chart](https://www.lucidchart.com/)
+    - Used to create flowcharts.
+
+### Python Libraries
+- [random](https://docs.python.org/3/library/random.html)
+    - Used to randomly select the word for the game.
+- [os](https://docs.python.org/3/library/os.html)
+    - Used for its `clear` tool, to clear the terminal window.
+- [time](https://docs.python.org/3/library/time.html)
+    - Used to calculate the time taken to complete the game.
+- [math](https://docs.python.org/3/library/math.html)
+    - Used to round down and round up variables.
+- [pyfiglet](https://pypi.org/project/pyfiglet/0.7/)
+    - Used to create ASCII art titles for the scoreboard, how to play screen, etc.
+- [gspread](https://docs.gspread.org/en/latest/)
+    - Used to pull from and push to a Google Sheet.
+- [oauth2](https://pypi.org/project/python-oauth2/)
+    - Used for authorization.
+- [colorama](https://pypi.org/project/colorama/)
+    - Used to colour feedback messages for the user.
 
 [Back to top 🔺](#hangman---python-terminal-game)
 
@@ -451,8 +480,19 @@ And of course more simple things such as a larger word list and category choice.
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Credits and Acknowledgements
+
 ### Text
+- This project contains a list of Disney movies, and Pokémon names, all belong to their respective owners Disney and The Pokémon Company.
+
 ### Images
+- A single image is used in this project. See [above](#).
+
 ### Code
+- Information provided in [this thread](https://stackoverflow.com/questions/30076145/how-to-sort-list-of-lists-by-highest-number) on Stack Overflow was used to sort data pulled from my scoreboard spreadsheet.
+- Information provided in [this thread](https://stackoverflow.com/questions/44307988/find-all-occurrences-of-a-character-in-a-string) on Stack Overflow was used to find all the occurrences of the guessed letter in the game word.
+- Information provided in [this thread](https://stackoverflow.com/questions/2084508/clear-terminal-in-python) on Stack Overflow was used to better understand how to clear the terminal window.
+
 ### Acknowledgements
+Thanks to my mentor [Oluwaseun Owonikoko](https://github.com/seunkoko) and the students from class June 2022 for their help and suggestions throughout the project.
+
 [Back to top 🔺](#hangman---python-terminal-game)
