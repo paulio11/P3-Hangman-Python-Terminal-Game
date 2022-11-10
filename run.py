@@ -195,7 +195,7 @@ NAME = None
 # Misc Functions
 def cprint(text):
     '''
-    Take parameter and print it center aligned.
+    Take the parameter and print it center-aligned.
     '''
     terminal_width = 80
 
@@ -215,8 +215,8 @@ def clear_terminal():
 # Game Menu
 def main_menu():
     '''
-    Draw main menu.
-    Take user input and run relevant function.
+    Draw the main menu.
+    Take user input and run relevant functions.
     '''
     clear_terminal()
 
@@ -281,9 +281,9 @@ def last_five_scores():
     '''
 
     score_data = SCORE_SHEET.get_all_values()
-    # Slices off last 5 rows.
+    # Slices off the last 5 rows.
     score_slice = score_data[-1:-6:-1]
-    # Sorts data by second column (the score) descending.
+    # Sorts data by the second column (the score) descending.
     score_slice = sorted(score_slice, key=lambda x: int(x[1]), reverse=True)
 
     draw_table(score_slice, 'Latest Scores', 'Last 5 Scores:')
@@ -296,7 +296,7 @@ def highscores():
     '''
 
     score_data = SCORE_SHEET.get_all_values()
-    # Sorts data by second column (the score) descending.
+    # Sorts data by the second column (the score) descending.
     score_sorted = sorted(score_data, key=lambda x: int(x[1]), reverse=True)
     # The [:5] is the top five scores.
     draw_table(score_sorted[:5], 'High Scores', 'All Time Top 5 Scores:')
@@ -358,9 +358,9 @@ def reset_game():
 
 def set_word():
     '''
-    Takes input from user to select a category.
+    Takes input from the user to select a category.
     Picks a random word from Google sheet.
-    Makes string of underscores based on length of random word.
+    Makes a string of underscores based on the length of random word.
     '''
     global GAME_WORD, CATEGORY, HIDDEN_WORD
 
@@ -411,7 +411,7 @@ def set_word():
 def game_display(header):
     '''
     Prints the following:
-    - Header based on current state.
+    - Header based on the current state.
     - Hangman word.
     - Current game stage.
     At the end of a game, shows text based on win or fail.
@@ -438,9 +438,9 @@ def game_display(header):
 
 def user_input():
     '''
-    While game is running:
+    While the game is running:
     - Displays guessed letters and player health.
-    - Takes input from player as guess.
+    - Takes input from the player as guess.
     - Passes valid guess to check_guess function.
     - Passes correct word guess to game_win_trigger function.
     - Calls game_display to redraw game.
@@ -461,7 +461,7 @@ def user_input():
 
         def redraw():
             '''
-            Redraws game area after a guess.
+            Redraws the game area after a guess.
             '''
             time.sleep(1)
             game_display(GAME_HEADER)
@@ -486,9 +486,9 @@ def user_input():
 
 def check_guess(guess):
     '''
-    Checks for correct or incorrect guess.
-    Updates varibles as necessary.
-    Calls game_display to redraw game.
+    Checks for a correct or incorrect guess.
+    Updates variables as necessary.
+    Calls game_display to redraw the game.
     '''
     global PLAYER_LIVES, GAME_STAGE, GAME_OVER, END_TIME
 
@@ -521,23 +521,23 @@ def update_hidden_word(guess):
     '''
     global HIDDEN_WORD
 
-    # Gets all postions of guess in word as an array.
+    # Gets all positions of guess in word as an array.
     positions = [i for i, a in enumerate(GAME_WORD) if a == guess]
     # Turn the hidden word into an array.
     hidden_word_arr = list(HIDDEN_WORD)
-    # Change value of position in array to guess.
+    # Change the value of the position in the array to guess.
     for num in positions:
         hidden_word_arr[num] = guess
     # Turns the hidden word array back into a string.
     HIDDEN_WORD = ''.join(hidden_word_arr)
-    # If hidden word is complete, the game is won.
+    # If the hidden word is complete, the game is won.
     if '_' not in HIDDEN_WORD:
         game_win_trigger()
 
 
 def game_win_trigger():
     '''
-    Function called when the player has won the game.
+    The function called when the player has won the game.
     From guessing the word, or guessing every letter.
     '''
     global END_TIME, GAME_WIN, GAME_OVER
@@ -578,7 +578,7 @@ def update_scoreboard():
 
     print(f'{Fore.GREEN}Updating scoreboard...')
 
-    # Updates google sheet with new row.
+    # Updates google sheet with a new row.
     SCORE_SHEET.append_row([NAME, SCORE, SECONDS, GAME_WORD])
 
     end_screen()
@@ -586,8 +586,8 @@ def update_scoreboard():
 
 def end_screen():
     '''
-    Confirms name entry into scoreboard.
-    Thanks player and returns to menu after input.
+    Confirms name entry into the scoreboard.
+    Thanks player and returns to the menu after input.
     '''
     clear_terminal()
 
