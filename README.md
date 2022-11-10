@@ -27,7 +27,7 @@
     4. [Game Over Screen]()
     5. [Winning the Game]()
     6. [Calculating the Score]()
-    7. [Name Input]()
+    7. [Updating the Scoreboard]()
     8. [End of the Game]()
 6. [Common Features]()
     1. [Printing Center Aligned Text]()
@@ -99,7 +99,8 @@ As the designer I want:
 - The game over and hangman titles were made using [Text ASCII Art Generator](https://patorjk.com/software/taag/).
 
 ### Mock Terminal and Background
-WRITE SOMETHING HERE
+- The mock python terminal is from a template provided by Code Institute. You can find the original [here](https://github.com/Code-Institute-Org/python-essentials-template).
+- The page background is taken from [Vecteezy](https://www.vecteezy.com/vector-art/1873000-old-vintage-computer-vector-illustration), edited to fit the aspect ratio of the terminal.
 
 [Back to top 🔺](#hangman---python-terminal-game)
 
@@ -111,6 +112,8 @@ Positive feedback is represented with green text. Negative feedback or invalid i
 ![Coloured feedback](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-feedback.png)
 
 ### Main Menu
+![Main menu](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-mainmenu.png)
+
 The first screen presented to the user is the main menu. It shows the game title, some ASCII art and a row of options. Below the dotted line is a python input field waiting to accept the user's choice.
 
 Created by the `main_menu()` function. User input is verified by an if-else statement and an array of valid user inputs.
@@ -119,9 +122,9 @@ Created by the `main_menu()` function. User input is verified by an if-else stat
 valid_choices = ['1', '2', '3', '4']
 ```
 
-![Main menu](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-mainmenu.png)
-
 ### How To Play
+![How to play](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-howtoplay.png)
+
 A simple text-only screen. Contains instructions for the user on how to play and win the game. 
 
 Beneath is a dotted line and the text "Press ENTER to return to the main menu...". Input from the user here will run the `main_menu()` function and return them to the main menu. This is repeated throughout the program so to avoid repeated lines of code it is all part of a function called `bottom_input()` that is called when necessary.
@@ -132,8 +135,6 @@ def bottom_input():
     input('Press ENTER to return to the menu...')
     main_menu()
 ```
-
-![How to play](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-howtoplay.png)
 
 ### High Scores and Last Five Scores
 Using the `get_all_values()` function from the [gspread](https://docs.gspread.org/en/latest/) google sheets plugin, data is pulled from a spreadsheet containing all player scores. The data is sliced and sorted in different ways depending on the option selected by the user from the main menu. 
@@ -185,9 +186,10 @@ def draw_table(scores, heading, heading2):
 ## The Game
 
 ### Category Selection and The Game Word
+![Category selection](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-category.png)
+
 The game itself features several categories the user can select from. The selected category changes the variable `WORD_LIST`. Each column in the word_list spreadsheet represents the possible words for each category.
 
-![Category selection](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-category.png)
 
 A random word is pulled using the python [random](https://docs.python.org/3/library/random.html) module and assigned as the variable `GAME_WORD`. This will be the word the user has to guess as the object of the game. 
 
@@ -334,11 +336,25 @@ SCORE = math.ceil((len(GAME_WORD) * 500) + (PLAYER_LIVES * 1000) / SECONDS)
 
 The values assigned have very little thought and design put into them, but basically, this makes longer words solved with a low number of incorrect guesses in a short time score higher than short words solved with many incorrect guesses in a longer amount of time. As the game time progresses the effect of the time taken has a diminishing effect on the final score.
 
-### Name Input
+### Updating the Scoreboard
 ![Game win screen](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gamewin.png)
 
-WRITE SOMETHING HERE
+The user is presented with an input asking for their name upon winning the game. The input is validated with a `while` loop that checks the input with the `isalpha()` function. Invalid inputs will restart the loop asking the user once again for input.
 
+``` 
+while True:
+        NAME = input('Please enter your name: ').capitalize()[:10]
+        if not NAME.isalpha():
+            print(f'{Fore.RED}Invalid name, try again...')
+        else:
+            break
+```
+
+The user's name, their score, time taken, and for my own curiosity the game word, are passed as parameters into the `append_row()` function from gspread.
+
+```
+SCORE_SHEET.append_row([NAME, SCORE, SECONDS, GAME_WORD])
+```
 
 ### End of the Game
 ![Game end screen](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gameend.png)
@@ -400,8 +416,25 @@ And of course more simple things such as a larger word list and category choice.
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Technologies
+
 ### Main Languages Used
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [CSS3](https://en.wikipedia.org/wiki/CSS)
+- [Python](https://www.python.org/)
+    - You can see all my python code [here](https://github.com/paulio11/project-3/blob/main/run.py).
+
 ### Other
+- [GitHub](https://github.com/)
+    - Used to store files, changes, and host the page.
+- [GitPod](https://www.gitpod.io/)
+    - Used to write, comment code, and commit to GitHub.
+- [Code Institute Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template)
+    - Used as the basis of the project, helped to set up GitPod workspace.
+- [Affinity Photo](https://affinity.serif.com/en-gb/photo/)
+    - Used to edit images, resizing and optimizing them for use on a website.
+- [Am I Responsive](https://ui.dev/amiresponsive)
+    - Used to create the hero image at the top of this readme.
+
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Testing
