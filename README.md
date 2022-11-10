@@ -335,12 +335,14 @@ SCORE = math.ceil((len(GAME_WORD) * 500) + (PLAYER_LIVES * 1000) / SECONDS)
 The values assigned have very little thought and design put into them, but basically, this makes longer words solved with a low number of incorrect guesses in a short time score higher than short words solved with many incorrect guesses in a longer amount of time. As the game time progresses the effect of the time taken has a diminishing effect on the final score.
 
 ### Name Input
-![Game win](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gamewin.png)
+![Game win screen](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gamewin.png)
 
 WRITE SOMETHING HERE
 
 
 ### End of the Game
+![Game end screen](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gameend.png)
+
 Just for user feedback purposes, once the scoreboard has been updated the user is presented with a simple screen thanking them for playing, this includes the name they provided previously and the option to return to the main menu.
 
 ```
