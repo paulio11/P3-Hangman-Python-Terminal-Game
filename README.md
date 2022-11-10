@@ -273,7 +273,7 @@ def end_screen():
 
 [Back to top 🔺](#hangman---python-terminal-game)
 
-## Common Features Throughout
+## Common Features
 To stop me from repeating myself in this documentation and my code, several features have been present throughout the program.
 
 ### Printing Center Aligned Text
@@ -300,5 +300,18 @@ A function called `clear_terminal()` is called throughout to clear the screen be
 def clear_terminal():
 	os.system('cls' if os.name == 'nt' else 'clear')
 ```
+
+[Back to top 🔺](#hangman---python-terminal-game)
+
+## Unimplemented Features
+
+### Guessing Whole Words Incorrectly
+Currently, the game will not penalise the user if they guess incorrectly when inputting an incorrect whole word. This will just show as an invalid guess. I would like the game to be able to distinguish between an invalid guess and an incorrect whole word guess. This would require a more complex if-else statement that I did not have the time to implement.
+
+### More User Data
+This would provide no extra functionality but there are many more values and details I can upload to the spreadsheet upon scoreboard entry. Things like the order of letters guessed, the time between guesses, whole words guessed and so on. All would benefit me as the designer from a gameplay perspective. This feedback could lead to improvements in word choice or difficulty. To implement this, new variables would have to be created throughout the program, and then each appended to the spreadsheet in the same way as the user's name and score currently are.
+
+### Further Word and Category Expansion
+And of course more simple things such as a larger word list and category choice. This is simple to implement but would add no extra value to this program as a portfolio project. 
 
 [Back to top 🔺](#hangman---python-terminal-game)
