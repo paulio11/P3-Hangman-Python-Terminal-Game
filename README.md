@@ -27,6 +27,8 @@
     4. [Game Over Screen]()
     5. [Winning the Game]()
     6. [Calculating the Score]()
+    7. [Name Input]()
+    8. [End of the Game]()
 6. [Common Features]()
     1. [Printing Center Aligned Text]()
     2. [Loading Text]()
@@ -97,6 +99,7 @@ As the designer I want:
 - The game over and hangman titles were made using [Text ASCII Art Generator](https://patorjk.com/software/taag/).
 
 ### Mock Terminal and Background
+WRITE SOMETHING HERE
 
 [Back to top 🔺](#hangman---python-terminal-game)
 
@@ -104,6 +107,8 @@ As the designer I want:
 ### User Input and Feedback
 This user input design and positioning are constant throughout the program. Always below a dotted line and on the same line in the terminal.
 Positive feedback is represented with green text. Negative feedback or invalid input is represented with red text. This functionality is part of the [colorama](https://pypi.org/project/colorama/) package. Consistency improves the experience for the user.
+
+![Coloured feedback](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-feedback.png)
 
 ### Main Menu
 The first screen presented to the user is the main menu. It shows the game title, some ASCII art and a row of options. Below the dotted line is a python input field waiting to accept the user's choice.
