@@ -15,7 +15,7 @@ Hangman is my third milestone project required to complete my Diploma in Full St
 
 The goal of the game is to guess the mystery word one letter at a time. The time taken, the number of incorrect guesses and word length will determine their score and their position on the scoreboard.
 
-[Back to top 🔺](#)
+[Back to top 🔺](#hangman---python-terminal-game)
 
 ## The User Experience
 
@@ -32,7 +32,7 @@ As the designer I want:
 - Users to meet their goals (above).
 - The game to be functional and without errors.
 
-[Back to top 🔺](#)
+[Back to top 🔺](#hangman---python-terminal-game)
 
 ## Design and Flow
 
@@ -41,11 +41,15 @@ As the designer I want:
 
 ![Flow chart](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/flowchart.png)
 
+### Flow Chart with Function Names and Variables
+
+![Flow chart with Functions and Variables](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/flowchart-functions.png)
+
 ### Titles and Headings
 - The titles for the scoreboard and category selection screens were made using the [pyfiglet](https://pypi.org/project/pyfiglet/0.7/) package.
 - The game over and hangman titles were made using [Text ASCII Art Generator](https://patorjk.com/software/taag/).
 
-[Back to top 🔺](#)
+[Back to top 🔺](#hangman---python-terminal-game)
 
 ## Features
 ### User Input and Feedback
@@ -114,7 +118,7 @@ def draw_table(scores, heading, heading2):
         rank += 1
 ```
 
-[Back to top 🔺](#)
+[Back to top 🔺](#hangman---python-terminal-game)
 
 ## The Game
 
@@ -218,4 +222,83 @@ elif GAME_OVER and GAME_WIN is False:
 
 The function `bottom_input` is then called once again to return the user to the main menu.
 
-[Back to top 🔺](#)
+### Winning the Game
+There are two ways to trigger a game win state. If the user guesses the game word in its entirety, or if there are no underscores left in the `HIDDEN_WORD` variable. Both of these outcomes will call the `game_win_trigger()` function.
+
+```
+elif guess == GAME_WORD:
+            HIDDEN_WORD = GAME_WORD
+            game_win_trigger()
+```
+```
+if '_' not in HIDDEN_WORD:
+        game_win_trigger()
+```
+
+The `game_win_trigger()` function will assign the variables `GAME_WIN` and `GAME_OVER` to `True`, set a variable called `END_TIME` (used to calculate the score later on) and call the `game_display()` function.
+
+```
+def game_win_trigger():
+    END_TIME = time.time()
+    GAME_WIN = True
+    GAME_OVER = True
+    game_display(WIN_HEADER)
+```
+
+When the game screen is reprinted with the variable `GAME_WIN` as `True` two functions are called, first `calculate_score()` and then `update_scoreboard()`.
+
+### Calcuating the Score
+The `calculate_score()` function has three parts. First, the variable `SECONDS` is assigned the value of `END_TIME` subtracted from `START_TIME` to get the seconds taken to win the game. The python [math](https://docs.python.org/3/library/math.html) module is used to round down the value to a whole number.
+
+```
+SECONDS = math.floor(END_TIME - START_TIME)
+```
+
+Then the score is calculated using an algorithm that takes into account the length of the word, the number of player lives remaining and the time taken. This is then rounded up using the `math.ceil()` function.
+
+```
+SCORE = math.ceil((len(GAME_WORD) * 500) + (PLAYER_LIVES * 1000) / SECONDS)
+```
+
+The values assigned have very little thought and design put into them, but basically, this makes longer words solved with a low number of incorrect guesses in a short time score higher than short words solved with many incorrect guesses in a longer amount of time. As the game time progresses the effect of the time taken has a diminishing effect on the final score.
+
+### End of the Game
+Just for user feedback purposes, once the scoreboard has been updated the user is presented with a simple screen thanking them for playing, this includes the name they provided previously and the option to return to the main menu.
+
+```
+def end_screen():
+    print(f'Thank you for playing {NAME}!')
+    print('Your name and score have been uploaded.')
+```
+
+[Back to top 🔺](#hangman---python-terminal-game)
+
+## Common Features Throughout
+To stop me from repeating myself in this documentation and my code, several features have been present throughout the program.
+
+### Printing Center Aligned Text
+I created a function called `cprint()` to center align text. This was to help with line length issues. 
+
+```
+def cprint(text):
+    terminal_width = 80
+    print(text.center(terminal_width))
+```
+
+### "Loading" Text
+I have loading text where necessary to give the user feedback when the following takes place:
+- Loading either scoreboard
+- Updating the scoreboard
+- Retrieving the word list after category selection
+
+All three of these require information to be pushed to or pulled from the spreadsheet and can take a few seconds. The loading text reassures the user something is happening.
+
+### Clearing the Terminal
+A function called `clear_terminal()` is called throughout to clear the screen before printing what is required at that point in the program. This was essential to make sure all user input is on the same line - a key part of my design. This was a suggestion from [Stack Overflow](https://stackoverflow.com/questions/2084508/clear-terminal-in-python).
+
+```
+def clear_terminal():
+	os.system('cls' if os.name == 'nt' else 'clear')
+```
+
+[Back to top 🔺](#hangman---python-terminal-game)
