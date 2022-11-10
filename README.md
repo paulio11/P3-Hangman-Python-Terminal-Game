@@ -114,6 +114,8 @@ Created by the `main_menu()` function. User input is verified by an if-else stat
 valid_choices = ['1', '2', '3', '4']
 ```
 
+![Main menu](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-mainmenu.png)
+
 ### How To Play
 A simple text-only screen. Contains instructions for the user on how to play and win the game. 
 
@@ -125,6 +127,8 @@ def bottom_input():
     input('Press ENTER to return to the menu...')
     main_menu()
 ```
+
+![How to play](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-howtoplay.png)
 
 ### High Scores and Last Five Scores
 Using the `get_all_values()` function from the [gspread](https://docs.gspread.org/en/latest/) google sheets plugin, data is pulled from a spreadsheet containing all player scores. The data is sliced and sorted in different ways depending on the option selected by the user from the main menu. 
@@ -139,6 +143,8 @@ def last_five_scores():
     draw_table(score_slice, 'Latest Scores', 'Last 5 Scores:')
 ```
 
+![Last five scores](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-lastfive.png)
+
 High Scores `highscores()` sorts all data pulled from the spreadsheet again with a lambda function by the values in the score column. Then passes just the first 5 arrays to the `draw_table()` function.
 
 ```
@@ -147,6 +153,8 @@ def highscores():
     score_sorted = sorted(score_data, key=lambda x: int(x[1]), reverse=True)
     draw_table(score_sorted[:5], 'High Scores', 'All Time Top 5 Scores:')
 ```
+
+![High scores](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-highscores.png)
 
 `draw_table()` takes the data and uses a for loop to print the arrays one at a time as a presentable table of scores.
 
@@ -174,6 +182,8 @@ def draw_table(scores, heading, heading2):
 ### Category Selection and The Game Word
 The game itself features several categories the user can select from. The selected category changes the variable `WORD_LIST`. Each column in the word_list spreadsheet represents the possible words for each category.
 
+![Category selection](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-category.png)
+
 A random word is pulled using the python [random](https://docs.python.org/3/library/random.html) module and assigned as the variable `GAME_WORD`. This will be the word the user has to guess as the object of the game. 
 
 ```
@@ -187,6 +197,8 @@ HIDDEN_WORD = '_' * len(GAME_WORD)
 ```
 
 ### The Main Game Screen
+![Main game screen](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-game.png)
+
 The most prominent feature of the game screen is the ASCII art landscape showing a castle, the hangman platform, and a tree. This is the first index of an array called `HANGMAN_STAGES`. Throughout the game, if the user makes an incorrect guess the `GAME_STAGE` variable is iterated by 1, and then when the game screen is reprinted the next ASCII art landscape in the array is called.
 
 ```
@@ -212,7 +224,10 @@ As with all screens so far, the user input is on the same line of the terminal, 
 The user input once validated by `user_input()` is passed to the `check_guess()` function. There are three outcomes of this function, either the guess is correct and the function `update_hidden_word()` is called, the user is out of guesses and the game is over, or the guess is correct and the game stage is redrawn so the game can continue.
 
 ### Updating the Hidden Word
+![Updating the word](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-updateword.png)
+
 The `update_hidden_word()` function is fairly complex but it can be broken up into a few simple actions. 
+
 1. It will take the user's guess and look for that letter in the `GAME_WORD` variable, returning an array of numbers, each representing the position of the guess in the word. 
 
 ```
@@ -246,6 +261,9 @@ if '_' not in HIDDEN_WORD:
 ```
 
 ### Game Over Screen
+
+![Game over](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gameover.png)
+
 When the variable `GAME_STAGE` has a value of 9, the game is over. This will occur after that many incorrect guesses from the user. This check is at the bottom of an if statement in the `check_guess()` function.
 
 ```
@@ -310,6 +328,12 @@ SCORE = math.ceil((len(GAME_WORD) * 500) + (PLAYER_LIVES * 1000) / SECONDS)
 ```
 
 The values assigned have very little thought and design put into them, but basically, this makes longer words solved with a low number of incorrect guesses in a short time score higher than short words solved with many incorrect guesses in a longer amount of time. As the game time progresses the effect of the time taken has a diminishing effect on the final score.
+
+### Name Input
+![Game win](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gamewin.png)
+
+WRITE SOMETHING HERE
+
 
 ### End of the Game
 Just for user feedback purposes, once the scoreboard has been updated the user is presented with a simple screen thanking them for playing, this includes the name they provided previously and the option to return to the main menu.
