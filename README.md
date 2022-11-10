@@ -39,7 +39,7 @@ As the designer I want:
 ### Flow Chart
 [Lucid Chart](https://www.lucidchart.com/) was used to plan out the flow of the program, from functions to user input/variable checks.
 
-![Flow chart](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/flowchart.png)
+![Flow chart](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/flowchart-updated.png)
 
 ### Flow Chart with Function Names and Variables
 
