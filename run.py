@@ -284,6 +284,7 @@ def last_five_scores():
     # Slices off the last 5 rows.
     score_slice = score_data[-1:-6:-1]
     # Sorts data by the second column (the score) descending.
+    # https://stackoverflow.com/questions/30076145/how-to-sort-list-of-lists-by-highest-number
     score_slice = sorted(score_slice, key=lambda x: int(x[1]), reverse=True)
 
     draw_table(score_slice, 'Latest Scores', 'Last 5 Scores:')
@@ -297,6 +298,7 @@ def highscores():
 
     score_data = SCORE_SHEET.get_all_values()
     # Sorts data by the second column (the score) descending.
+    # https://stackoverflow.com/questions/30076145/how-to-sort-list-of-lists-by-highest-number
     score_sorted = sorted(score_data, key=lambda x: int(x[1]), reverse=True)
     # The [:5] is the top five scores.
     draw_table(score_sorted[:5], 'High Scores', 'All Time Top 5 Scores:')
@@ -473,10 +475,10 @@ def user_input():
             HIDDEN_WORD = GAME_WORD
             game_win_trigger()
         elif not guess.isalpha() or len(guess) > 1:
-            print(f'{Fore.RED}Invalid guess')
+            print(f'{Fore.RED}Invalid guess, OR you guessed too fast.')
             redraw()
         elif guess in guessed_letters:
-            print(f'{Fore.YELLOW}Letter already guessed, try another')
+            print(f'{Fore.YELLOW}Letter already guessed, try another.')
             redraw()
         else:
             guessed_letters.append(guess)
@@ -522,6 +524,7 @@ def update_hidden_word(guess):
     global HIDDEN_WORD
 
     # Gets all positions of guess in word as an array.
+    # https://stackoverflow.com/questions/44307988/find-all-occurrences-of-a-character-in-a-string
     positions = [i for i, a in enumerate(GAME_WORD) if a == guess]
     # Turn the hidden word into an array.
     hidden_word_arr = list(HIDDEN_WORD)
