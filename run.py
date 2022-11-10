@@ -366,7 +366,7 @@ def set_word():
     print('\n' * 11)
     print('-' * 80)
     choice = input('Select a category: ')
-    print(f'f{Fore.GREEN}Loading game...')
+    print(f'{Fore.GREEN}Loading game...')
 
     valid_choices = ['1', '2', '3', '4', '5', '6']
     word_sheet = SHEET.worksheet('word_sheet')
@@ -422,7 +422,7 @@ def game_display(header):
     elif GAME_OVER and GAME_WIN is False:
         left_text = 'Oh dear he died!'
         right_text = f'The Mystery {CATEGORY} was {GAME_WORD}.'
-        print(f'{left_text : <40}{right_text : >40}')
+        print(f'{left_text : <25}{right_text : >55}')
         bottom_input()
 
 
