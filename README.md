@@ -315,3 +315,28 @@ This would provide no extra functionality but there are many more values and det
 And of course more simple things such as a larger word list and category choice. This is simple to implement but would add no extra value to this program as a portfolio project. 
 
 [Back to top 🔺](#hangman---python-terminal-game)
+
+## Technologies
+### Main Languages Used
+### Other
+[Back to top 🔺](#hangman---python-terminal-game)
+
+## Testing
+### Testing User Stories
+### Manual Testing
+### Automated Testing
+### Browser Validation
+### User Testing
+[Back to top 🔺](#hangman---python-terminal-game)
+
+## Deployment
+### Download Code
+### Deployment to Heroku
+[Back to top 🔺](#hangman---python-terminal-game)
+
+## Credits and Acknowledgements
+### Text
+### Images
+### Code
+### Acknowledgements
+[Back to top 🔺](#hangman---python-terminal-game)
