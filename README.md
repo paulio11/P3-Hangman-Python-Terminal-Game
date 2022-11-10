@@ -6,6 +6,53 @@
 
 ## Contents 
 
+1. [Introduction](#introduction)
+2. [The User Experience]()
+    1. [User Goals]()
+    2. [Project Goals]()
+3. [Design and Flow]()
+    1. [Flow Chart]()
+    2. [Flow Chart with Function Names and Variables]()
+    3. [Titles and Headings]()
+    4. [Mock Terminal and Background]()
+4. [Features]()
+    1. [User Input and Feedback]()
+    2. [Main Menu]()
+    3. [How To Play]()
+    4. [High Scores and Last Five Scores]()
+5. [The Game]()
+    1. [Category Selection and The Game Word]()
+    2. [The Main Game Screen]()
+    3. [Updating the Hidden Word]()
+    4. [Game Over Screen]()
+    5. [Winning the Game]()
+    6. [Calculating the Score]()
+6. [Common Features]()
+    1. [Printing Center Aligned Text]()
+    2. [Loading Text]()
+    3. [Clearing the Terminal]()
+7. [Unimplemented Features]()
+    1. [Guessing Whole Words Incorrectly]()
+    2. [More User Data]()
+    3. [Further Word and Category Expansion]()
+8. [Bugs and Development Issues]()
+9. [Technologies]()
+    1. [Main Languages Used]()
+    2. [Other]()
+10. [Testing]()
+    1. [Testing User Stores]()
+    2. [Manual Testing]()
+    3. [Automated Testing]()
+    4. [Browser Validation]()
+    5. [User Testing]()
+11. [Deployment]()
+    1. [Download Code]()
+    2. [Deployment to Heroku]()
+12. [Credits and Acknowledgements]()
+    1. [Text]()
+    2. [Images]()
+    3. [Code]()
+    4. [Acknowledgements]()
 
 
 ## Introduction
@@ -48,6 +95,8 @@ As the designer I want:
 ### Titles and Headings
 - The titles for the scoreboard and category selection screens were made using the [pyfiglet](https://pypi.org/project/pyfiglet/0.7/) package.
 - The game over and hangman titles were made using [Text ASCII Art Generator](https://patorjk.com/software/taag/).
+
+### Mock Terminal and Background
 
 [Back to top 🔺](#hangman---python-terminal-game)
 
@@ -314,6 +363,9 @@ This would provide no extra functionality but there are many more values and det
 ### Further Word and Category Expansion
 And of course more simple things such as a larger word list and category choice. This is simple to implement but would add no extra value to this program as a portfolio project. 
 
+[Back to top 🔺](#hangman---python-terminal-game)
+
+## Bugs and Development Issues
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Technologies
