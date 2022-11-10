@@ -192,7 +192,7 @@ SCORE = None
 NAME = None
 
 
-# Print Function
+# Misc Functions
 def cprint(text):
     '''
     Take parameter and print it center aligned.
@@ -202,13 +202,23 @@ def cprint(text):
     print(text.center(terminal_width))
 
 
+def clear_terminal():
+    '''
+    Clears the terminal.
+    '''
+    # From:
+    # https://stackoverflow.com/questions/2084508/clear-terminal-in-python
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 # Game Menu
 def main_menu():
     '''
     Draw main menu.
     Take user input and run relevant function.
     '''
-    os.system('clear')
+    clear_terminal()
 
     print(GAME_HEADER)
     cprint('WELCOME TO HANGMAN!')
@@ -244,7 +254,7 @@ def instructions():
     '''
     Print game instructions.
     '''
-    os.system('clear')
+    clear_terminal()
 
     print()
     print(pyfiglet.figlet_format('How To Play', justify='center', width=80))
@@ -302,7 +312,7 @@ def draw_table(scores, heading, heading2):
     score_h = 'SCORE'
     time_h = 'TIME'
 
-    os.system('clear')
+    clear_terminal()
 
     print()
     print(pyfiglet.figlet_format(heading, justify='center', width=80))
@@ -354,7 +364,7 @@ def set_word():
     '''
     global GAME_WORD, CATEGORY, HIDDEN_WORD
 
-    os.system('clear')
+    clear_terminal()
 
     print(pyfiglet.figlet_format('Category', justify='center', width=80))
     print('1: Halloween')
@@ -407,7 +417,7 @@ def game_display(header):
     At the end of a game, shows text based on win or fail.
     '''
 
-    os.system('clear')
+    clear_terminal()
 
     print(header)
     cprint(f'Mystery {CATEGORY}:')
@@ -579,7 +589,7 @@ def end_screen():
     Confirms name entry into scoreboard.
     Thanks player and returns to menu after input.
     '''
-    os.system('clear')
+    clear_terminal()
 
     print('\n' * 12)
     cprint(f'Thank you for playing {NAME}!')
