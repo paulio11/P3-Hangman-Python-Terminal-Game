@@ -232,10 +232,10 @@ def main_menu():
     elif choice == '2':
         instructions()
     elif choice == '3':
-        print('Loading scoreboard...')
+        print(f'{Fore.GREEN}Loading scoreboard...')
         highscores()
     elif choice == '4':
-        print('Loading scoreboard...')
+        print(f'{Fore.GREEN}Loading scoreboard...')
         last_five_scores()
 
 
@@ -366,7 +366,7 @@ def set_word():
     print('\n' * 11)
     print('-' * 80)
     choice = input('Select a category: ')
-    print('Loading game...')
+    print(f'f{Fore.GREEN}Loading game...')
 
     valid_choices = ['1', '2', '3', '4', '5', '6']
     word_sheet = SHEET.worksheet('word_sheet')
@@ -566,7 +566,7 @@ def update_scoreboard():
         else:
             break
 
-    print('Updating scoreboard...')
+    print(f'{Fore.GREEN}Updating scoreboard...')
 
     # Updates google sheet with new row.
     SCORE_SHEET.append_row([NAME, SCORE, SECONDS, GAME_WORD])
