@@ -1,6 +1,6 @@
 # Hangman - Python Terminal Game
 
-![Image of website on multiple devices](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/hangman-hero-img.png)
+![Image of website on multiple devices](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/readme-title.png)
 
 [Link to live GitHub deployment](https://py-hangman-py.herokuapp.com/)
 
@@ -34,20 +34,20 @@
     3. [Loading Text](#loading-text)
     4. [Clearing the Terminal](#clearing-the-terminal)
 7. [Unimplemented Features](#unimplemented-features)
-    1. [Guessing Whole Words Incorrectly](#guessing-whole-words-incorrectly)
-    2. [More User Data](#more-user-data)
-    3. [Further Word and Category Expansion](#further-word-and-category-expansion)
+    1. [Difficulty](#difficulty)
+    2. [Guessing Whole Words Incorrectly](#guessing-whole-words-incorrectly)
+    3. [More User Data](#more-user-data)
+    4. [Further Word and Category Expansion](#further-word-and-category-expansion)
 8. [Bugs and Development Issues](#bugs-and-development-issues)
 9. [Technologies](#technologies)
     1. [Main Languages Used](#main-languages-used)
     2. [Other](#other)
     3. [Python Libraries](#python-libraries)
 10. [Testing](#testing)
-    1. [Testing User Stores](#testing-user-stories)
+    1. [Testing User Goals](#testing-user-goals)
     2. [Manual Testing](#manual-testing)
     3. [Automated Testing](#automated-testing)
-    4. [Browser Validation](#browser-validation)
-    5. [User Testing](#user-testing)
+    4. [User Testing](#user-testing)
 11. [Deployment](#deployment)
     1. [Download Code](#download-code)
     2. [Deployment to Heroku](#deployment-to-heroku)
@@ -75,7 +75,7 @@ As a user I want:
 - To learn how to play and understand the game.
 - The game to offer replay value with a large number of words and categories to play with.
 - To easily navigate through available options and have clear feedback on my inputs.
-- To know how weel I did and be able to compare myself to others.
+- To know how well I did and be able to compare myself to others.
 
 ### Project Goals
 As the designer I want:
@@ -405,6 +405,9 @@ def clear_terminal():
 ### Guessing Whole Words Incorrectly
 Currently, the game will not penalise the user if they guess incorrectly when inputting an incorrect whole word. This will just show as an invalid guess. I would like the game to be able to distinguish between an invalid guess and an incorrect whole word guess. This would require a more complex if-else statement that I did not have the time to implement.
 
+### Difficulty
+An option to select difficulty would be a good addition. The random selection of the game word means that sometimes the length is short, sometimes the length is long. Longer words are inherently harder and more fun to guess. A selectable difficulty would allow the user to choose a minimum length of word that they have to guess.
+
 ### More User Data
 This would provide no extra functionality but there are many more values and details I can upload to the spreadsheet upon scoreboard entry. Things like the order of letters guessed, the time between guesses, whole words guessed and so on. All would benefit me as the designer from a gameplay perspective. This feedback could lead to improvements in word choice or difficulty. To implement this, new variables would have to be created throughout the program, and then each appended to the spreadsheet in the same way as the user's name and score currently are.
 
@@ -462,12 +465,30 @@ And of course more simple things such as a larger word list and category choice.
     - Used for authorization.
 - [colorama](https://pypi.org/project/colorama/)
     - Used to colour feedback messages for the user.
+- [pycodestyle](https://pypi.org/project/pycodestyle/)
+    - An alternative to PEP8Online, a PEP8 validator.
 
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Testing
 
-### Testing User Stories
+### Testing User Goals
+
+**User's want:**
+- To have fun and be challenged.
+    - Obiously you can't test to see if a user is having fun, but users that have played the game have given me positive feedback.
+    - The game sometimes can be challenging, likely when the user is unfamiliar with the game word or due to it's length. Selectable difficulty levels are currently unimplemented. See [Unimplemented Features](#unimplemented-features) above.
+- To learn how to play and understand the game.
+    - The How To Play screen avaiable to the user from the main menu helps them understand.
+    - Feedback to the user throughout the game further aids this.
+- The game to offer replay value with a large number of words and categories to play with.
+    - Currently the game offers the user 6 categories to choose from, each with 30+ words to guess. This isn't a huge ammount but is easily expandable.
+- To easily navigate through available options and have clear feedback on my inputs.
+    - The main menu is clear and simple to use.
+    - Throughout the game and other screens, user input is always requested on the same line in the terminal. Making it clear and consistent.
+- To know how well I did and be able to compare myself to others.
+    - Users that get a game over are show the game word at the end so they can see how close they got to winning.
+    - Winners are presented with a score and a time taken statistic. They can then compare themselves with others by viewing the scoreboard.
 
 ### Manual Testing
 
@@ -502,6 +523,10 @@ And of course more simple things such as a larger word list and category choice.
 <details>
     <summary>Selecting the Countries category</summary>
     <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/08-cat-country.gif">
+</details>
+<details>
+    <summary>Selecting the Animals category</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/09-cat-animals.gif">
 </details>
 <details>
     <summary>Selecting the Disney Movies category</summary>
@@ -553,10 +578,11 @@ And of course more simple things such as a larger word list and category choice.
 </details>
 
 ### Automated Testing
-
-### Browser Validation
+For automated testing, an alternative to PEP8Online had to be used as there are ongoing issues with this python validator. [Pycodestyle](https://pypi.org/project/pycodestyle/) (a PEP8 validator) was added directly to my workspace in Gitpod. Once enabled pycodestyle highlights any warnings and errors within your code. My code is contains no errors or warnings at point of project submission.
 
 ### User Testing
+
+Throughout all stages of this project, the application was tested by several Code Institute students as well as other friends. Weekly testing was carried out my by mentor [Oluwaseun Owonikoko](https://github.com/seunkoko).
 
 [Back to top 🔺](#hangman---python-terminal-game)
 
@@ -574,7 +600,7 @@ To download a copy of this project and all required assets click the Code button
 This project contains a list of Disney movies, and Pokémon names, all belong to their respective owners Disney and The Pokémon Company.
 
 ### Images
-A single image is used in this project. See [above](#).
+A single image is used in this project. See [above](#images).
 
 ### Code
 - Information provided in [this thread](https://stackoverflow.com/questions/30076145/how-to-sort-list-of-lists-by-highest-number) on Stack Overflow was used to sort data pulled from my scoreboard spreadsheet.
