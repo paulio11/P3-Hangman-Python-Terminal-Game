@@ -7,55 +7,55 @@
 ## Contents 
 
 1. [Introduction](#introduction)
-2. [The User Experience]()
-    1. [User Goals]()
-    2. [Project Goals]()
-3. [Design and Flow]()
-    1. [Flow Chart]()
-    2. [Flow Chart with Function Names and Variables]()
-    3. [Titles and Headings]()
-    4. [Mock Terminal and Background]()
-4. [Features]()
-    1. [User Input and Feedback]()
-    2. [Main Menu]()
-    3. [How To Play]()
-    4. [High Scores and Last Five Scores]()
-5. [The Game]()
-    1. [Category Selection and The Game Word]()
-    2. [The Main Game Screen]()
-    3. [Updating the Hidden Word]()
-    4. [Game Over Screen]()
-    5. [Winning the Game]()
-    6. [Calculating the Score]()
-    7. [Updating the Scoreboard]()
-    8. [End of the Game]()
-6. [Common Features]()
-    1. [Printing Center Aligned Text]()
-    2. [Loading Text]()
-    3. [Clearing the Terminal]()
-7. [Unimplemented Features]()
-    1. [Guessing Whole Words Incorrectly]()
-    2. [More User Data]()
-    3. [Further Word and Category Expansion]()
-8. [Bugs and Development Issues]()
-9. [Technologies]()
-    1. [Main Languages Used]()
-    2. [Other]()
-    3. [Python Libraries]()
-10. [Testing]()
-    1. [Testing User Stores]()
-    2. [Manual Testing]()
-    3. [Automated Testing]()
-    4. [Browser Validation]()
-    5. [User Testing]()
-11. [Deployment]()
-    1. [Download Code]()
-    2. [Deployment to Heroku]()
-12. [Credits and Acknowledgements]()
-    1. [Text]()
-    2. [Images]()
-    3. [Code]()
-    4. [Acknowledgements]()
+2. [The User Experience](#the-user-experience)
+    1. [User Goals](#user-goals)
+    2. [Project Goals](#project-goals)
+3. [Design and Flow](#design-and-flow)
+    1. [Flow Chart](#flow-chart)
+    2. [Flow Chart with Function Names and Variables](#flow-chart-with-function-names-and-variables)
+    3. [Titles and Headings](#titles-and-headings)
+    4. [Mock Terminal and Background](#mock-terminal-and-background)
+4. [Features](#features)
+    1. [Main Menu](#main-menu)
+    2. [How To Play](#how-to-play)
+    3. [High Scores and Last Five Scores](#high-scores-and-last-five-scores)
+5. [The Game](#the-game)
+    1. [Category Selection and The Game Word](#category-selection-and-the-game-word)
+    2. [The Main Game Screen](#the-main-game-screen)
+    3. [Updating the Hidden Word](#updating-the-hidden-word)
+    4. [Game Over Screen](#game-over-screen)
+    5. [Winning the Game](#winning-the-game)
+    6. [Calculating the Score](#calcuating-the-score)
+    7. [Updating the Scoreboard](#updating-the-scoreboard)
+    8. [End of the Game](#end-of-the-game)
+6. [Common Features](#common-features)
+    1. [User Input and Feedback](#user-input-and-feedback)
+    2. [Printing Center Aligned Text](#printing-center-aligned-text)
+    3. [Loading Text](#loading-text)
+    4. [Clearing the Terminal](#clearing-the-terminal)
+7. [Unimplemented Features](#unimplemented-features)
+    1. [Guessing Whole Words Incorrectly](#guessing-whole-words-incorrectly)
+    2. [More User Data](#more-user-data)
+    3. [Further Word and Category Expansion](#further-word-and-category-expansion)
+8. [Bugs and Development Issues](#bugs-and-development-issues)
+9. [Technologies](#technologies)
+    1. [Main Languages Used](#main-languages-used)
+    2. [Other](#other)
+    3. [Python Libraries](#python-libraries)
+10. [Testing](#testing)
+    1. [Testing User Stores](#testing-user-stories)
+    2. [Manual Testing](#manual-testing)
+    3. [Automated Testing](#automated-testing)
+    4. [Browser Validation](#browser-validation)
+    5. [User Testing](#user-testing)
+11. [Deployment](#deployment)
+    1. [Download Code](#download-code)
+    2. [Deployment to Heroku](#deployment-to-heroku)
+12. [Credits and Acknowledgements](#credits-and-acknowledgements)
+    1. [Text](#text)
+    2. [Images](#images)
+    3. [Code](#code)
+    4. [Acknowledgements](#acknowledgements)
 
 
 ## Introduction
@@ -106,12 +106,6 @@ As the designer I want:
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Features
-### User Input and Feedback
-- This user input design and positioning are constant throughout the program. Always below a dotted line and on the same line in the terminal.
-- Positive feedback is represented with green text. Negative feedback or invalid input is represented with red text. This functionality is part of the [colorama](https://pypi.org/project/colorama/) package. 
-- Consistency of position and colour improves the experience for the user, hopefully producing a positive emotional response.
-
-![Coloured feedback](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-feedback.png)
 
 ### Main Menu
 ![Main menu](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-mainmenu.png)
@@ -372,7 +366,12 @@ def end_screen():
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Common Features
-To stop me from repeating myself in this documentation and my code, several features have been present throughout the program.
+### User Input and Feedback
+- This user input design and positioning are constant throughout the program. Always below a dotted line and on the same line in the terminal.
+- Positive feedback is represented with green text. Negative feedback or invalid input is represented with red text. This functionality is part of the [colorama](https://pypi.org/project/colorama/) package. 
+- Consistency of position and colour improves the experience for the user, hopefully producing a positive emotional response.
+
+![Coloured feedback](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-feedback.png)
 
 ### Printing Center Aligned Text
 I created a function called `cprint()` to center align text. This was to help with line length issues. 
