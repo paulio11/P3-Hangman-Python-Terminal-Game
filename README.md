@@ -1,6 +1,6 @@
 # Hangman - Python Terminal Game
 
-![Image of website on multiple devices](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/readme-title.png)
+![Image of website](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/readme-title.png)
 
 [Link to live GitHub deployment](https://py-hangman-py.herokuapp.com/)
 
@@ -567,6 +567,18 @@ And of course more simple things such as a larger word list and category choice.
 <details>
     <summary>Entering name</summary>
     <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/19-nameentry.gif">
+</details>
+<details>
+    <summary>Entering an invalid name</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/22-invalidname.gif">
+</details>
+<details>
+    <summary>Entering a long name</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/23-longname.gif">
+</details>
+<details>
+    <summary>Entering no name</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/24-noname.gif">
 </details>
 <details>
     <summary>Returning to the main menu after name entry</summary>
