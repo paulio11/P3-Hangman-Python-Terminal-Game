@@ -466,11 +466,98 @@ And of course more simple things such as a larger word list and category choice.
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Testing
+
 ### Testing User Stories
+
 ### Manual Testing
+
+<details>
+    <summary>Making invalid inputs on the main menu</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/01-main-menu-invalid.gif">
+</details>
+<details>
+    <summary>Navigating to the How To Play screen and returning to the main menu</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/02-howtoplay.gif">
+</details>
+<details>
+    <summary>Navigating to the High Scores screen and returning to the main menu</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/03-highscores.gif">
+</details>
+<details>
+    <summary>Navigating to the Last 5 Scores screen and returning to the main menu</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/04-last5scores.gif">
+</details>
+<details>
+    <summary>Starting the game</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/05-startgame.gif">
+</details>
+<details>
+    <summary>Selecting the Halloween category</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/06-cat-halloween.gif">
+</details>
+<details>
+    <summary>Selecting the Pokémon category</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/07-cat-pokemon.gif">
+</details>
+<details>
+    <summary>Selecting the Countries category</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/08-cat-country.gif">
+</details>
+<details>
+    <summary>Selecting the Disney Movies category</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/10-cat-disney.gif">
+</details>
+<details>
+    <summary>Selecting the Video Games category</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/11-cat-videogames.gif">
+</details>
+<details>
+    <summary>Making incorrect guesses</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/12-incorrectguess.gif">
+</details>
+<details>
+    <summary>Making correct guesses</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/13-correctguess.gif">
+</details>
+<details>
+    <summary>Making repeat guesses</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/14-repeatedguess.gif">
+</details>
+<details>
+    <summary>Failing the game (running out of lives/guesses)</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/15-failing.gif">
+</details>
+<details>
+    <summary>Returning to the main menu after failing the game</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/16-failingbacktomenu.gif">
+</details>
+<details>
+    <summary>Winning the game (completing the word)</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/17-finishingword.gif">
+</details>
+<details>
+    <summary>Winning the game (guessing the word)</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/18-guessingword.gif">
+</details>
+<details>
+    <summary>Entering name</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/19-nameentry.gif">
+</details>
+<details>
+    <summary>Returning to the main menu after name entry</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/20-returningtomenu.gif">
+</details>
+<details>
+    <summary>Checking score in scoreboard after winning the game</summary>
+    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/21-checkingscore.gif">
+</details>
+
 ### Automated Testing
+
 ### Browser Validation
+
 ### User Testing
+
 [Back to top 🔺](#hangman---python-terminal-game)
 
 ## Deployment
