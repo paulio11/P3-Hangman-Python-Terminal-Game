@@ -190,6 +190,7 @@ end_time = None
 seconds = None
 score = None
 name = None
+FEEDBACK_TIME = 2
 
 
 # Misc Functions
@@ -235,7 +236,7 @@ def main_menu():
 
     if choice not in valid_choices:
         print(f'{Fore.RED}Invalid selection, try again.')
-        time.sleep(1)
+        time.sleep(FEEDBACK_TIME)
         main_menu()
     elif choice == '1':
         start_game()
@@ -385,7 +386,7 @@ def set_word():
 
     if choice not in valid_choices:
         print(f'{Fore.RED}Invalid selection, try again.')
-        time.sleep(1)
+        time.sleep(FEEDBACK_TIME)
         set_word()
     elif choice == '1':
         word_list = word_sheet.col_values(1)
@@ -465,7 +466,7 @@ def user_input():
             '''
             Redraws the game area after a guess.
             '''
-            time.sleep(1)
+            time.sleep(FEEDBACK_TIME)
             game_display(GAME_HEADER)
 
         if guess == 'HELP':
@@ -509,7 +510,7 @@ def check_guess(guess):
         game_over = True
         game_display(FAIL_HEADER)
 
-    time.sleep(1)
+    time.sleep(FEEDBACK_TIME)
 
     if game_over is False:
         # Redraws game area after checking guess.
