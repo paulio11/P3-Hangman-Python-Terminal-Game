@@ -614,7 +614,7 @@ This program was deployed to [Heroku](https://heroku.com/). You can visit the li
 **To deploy a copy of this project for your self follow these steps:**
 1. Fork or clone this repository.
 2. Create a new app on Heroku.
-3. Ensure that the buildpacks are set to 'Python' and 'NodeJS'.
+3. Ensure that the buildpacks are set to `Python` and `NodeJS`.
 4. Link the app on Heroku to the repository.
 
 **Setting up credentials and Google Sheets:**
