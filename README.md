@@ -1,6 +1,6 @@
 # Hangman - Python Terminal Game
 
-![Image of website](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/readme-title.png)
+![Image of website](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/readme-title.png)
 
 [Link to live site](https://py-hangman-py.herokuapp.com/)
 
@@ -88,11 +88,11 @@ As the designer I want:
 ### Flow Chart
 [Lucid Chart](https://www.lucidchart.com/) was used to plan the flow of the program, from functions to user input and variable checks.
 
-![Flow chart](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/flowchart-updated.png)
+![Flow chart](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/flowchart-updated.png)
 
 ### Flow Chart with Function Names and Variables
 
-![Flow chart with Functions and Variables](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/flowchart-functions.png)
+![Flow chart with Functions and Variables](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/flowchart-functions.png)
 
 ### Titles and Headings
 - The titles for the scoreboard and category selection screens were made using [pyfiglet](https://pypi.org/project/pyfiglet/0.7/).
@@ -110,7 +110,7 @@ You can view the Google sheet that stores all data for this program [here](https
 ## Features
 
 ### Main Menu
-![Main menu](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-mainmenu.png)
+![Main menu](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-mainmenu.png)
 
 The first screen presented to the user is the main menu. It shows the game title, some ASCII art and a row of options. Below the dotted line is a python input field waiting to accept the user's choice.
 
@@ -121,7 +121,7 @@ valid_choices = ['1', '2', '3', '4']
 ```
 
 ### How To Play
-![How to play](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-howtoplay.png)
+![How to play](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-howtoplay.png)
 
 A simple text-only screen. Contains instructions for the user on how to play and win the game. 
 
@@ -147,7 +147,7 @@ def last_five_scores():
     draw_table(score_slice, 'Latest Scores', 'Last 5 Scores:')
 ```
 
-![Last five scores](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-lastfive.png)
+![Last five scores](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-lastfive.png)
 
 High Scores `highscores()` sorts all data pulled from the spreadsheet again with a lambda function by the values in the score column. Then passes just the first 5 arrays to the `draw_table()` function.
 
@@ -158,7 +158,7 @@ def highscores():
     draw_table(score_sorted[:5], 'High Scores', 'All Time Top 5 Scores:')
 ```
 
-![High scores](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-highscores.png)
+![High scores](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-highscores.png)
 
 `draw_table()` takes the data and uses a for loop to print the arrays one at a time as a presentable table of scores.
 
@@ -184,7 +184,7 @@ def draw_table(scores, heading, heading2):
 ## The Game
 
 ### Category Selection and The Game Word
-![Category selection](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-category.png)
+![Category selection](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-category.png)
 
 The game itself features several categories the user can select from. The selected category changes the variable `WORD_LIST`. Each column in the word_list spreadsheet contains the possible words for each category.
 
@@ -201,7 +201,7 @@ hidden_word = '_' * len(game_word)
 ```
 
 ### The Main Game Screen
-![Main game screen](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-game.png)
+![Main game screen](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-game.png)
 
 The most prominent feature of the game screen is the ASCII art landscape showing a castle, the hangman platform, and a tree. This multiple line string the first index of an array called `HANGMAN_STAGES`. Throughout the game, if the user makes an incorrect guess the `game_stage` variable is iterated by 1, and then when the game screen is reprinted the next ASCII art landscape in the array is called.
 
@@ -231,7 +231,7 @@ The user input once validated by `user_input()` is passed to the `check_guess()`
 - The guess is incorrect, the user has guesses remaining and the game stage is redrawn so the game can continue.
 
 ### Updating the Hidden Word
-![Updating the word](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-updateword.png)
+![Updating the word](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-updateword.png)
 
 The `update_hidden_word()` function is fairly complex but it can be broken up into a few simple actions. 
 
@@ -269,7 +269,7 @@ if '_' not in hidden_word:
 
 ### Game Over Screen
 
-![Game over](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gameover.png)
+![Game over](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-gameover.png)
 
 When the variable `game_stage` has a value of 9, the game is over. This will occur after that many incorrect guesses from the user. This check is at the bottom of an if statement in the `check_guess()` function.
 
@@ -342,7 +342,7 @@ score = math.ceil((len(game_word) * 500) + (player_lives * 1000) / seconds)
 The values assigned have very little thought and design put into them, but basically; this makes longer words solved with a low number of incorrect guesses in a short time score higher than short words solved with many incorrect guesses in a longer amount of time. As the game time progresses the effect of the time taken has a diminishing effect on the final score.
 
 ### Updating the Scoreboard
-![Game win screen](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gamewin.png)
+![Game win screen](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-gamewin.png)
 
 The user is presented with an input asking for their name upon winning the game. The input is validated with a `while` loop that checks the input with the `isalpha()` function. Invalid inputs will restart the loop asking the user once again for input. Any input is also reduced to just 10 characters. This is to help maintain the desired spacing of columns on the scoreboard.
 
@@ -362,7 +362,7 @@ SCORE_SHEET.append_row([name, score, seconds, game_word])
 ```
 
 ### End of the Game
-![Game end screen](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-gameend.png)
+![Game end screen](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-gameend.png)
 
 Just for user feedback purposes, once the scoreboard has been updated the user is presented with a simple screen thanking them for playing, this includes the name they provided previously and the option to return to the main menu.
 
@@ -380,7 +380,7 @@ def end_screen():
 - Positive feedback is represented with green text. Negative feedback or invalid input is represented with red text. This functionality is part of [colorama](https://pypi.org/project/colorama/). 
 - Consistency of position and colour improves the experience for the user, hopefully producing a positive emotional response.
 
-![Coloured feedback](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/screenshot-feedback.png)
+![Coloured feedback](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/screenshot-feedback.png)
 
 ### Printing Center Aligned Text
 I created a function called `cprint()` to center align text. This was to help with line length issues. 
@@ -437,7 +437,7 @@ And of course more obvious things such as a larger word list and category choice
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/CSS)
 - [Python](https://www.python.org/)
-    - You can see all my python code [here](https://github.com/paulio11/project-3/blob/main/run.py).
+    - You can see all my python code [here](https://github.com/paulio11/P3-Hangman-Python-Terminal-Game/blob/main/run.py).
 
 ### Other
 - [GitHub](https://github.com/)
@@ -503,99 +503,99 @@ And of course more obvious things such as a larger word list and category choice
 
 <details>
     <summary>Making invalid inputs on the main menu</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/01-main-menu-invalid.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/01-main-menu-invalid.gif">
 </details>
 <details>
     <summary>Navigating to the How To Play screen and returning to the main menu</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/02-howtoplay.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/02-howtoplay.gif">
 </details>
 <details>
     <summary>Navigating to the High Scores screen and returning to the main menu</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/03-highscores.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/03-highscores.gif">
 </details>
 <details>
     <summary>Navigating to the Last 5 Scores screen and returning to the main menu</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/04-last5scores.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/04-last5scores.gif">
 </details>
 <details>
     <summary>Starting the game</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/05-startgame.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/05-startgame.gif">
 </details>
 <details>
     <summary>Selecting the Halloween category</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/06-cat-halloween.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/06-cat-halloween.gif">
 </details>
 <details>
     <summary>Selecting the Pokémon category</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/07-cat-pokemon.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/07-cat-pokemon.gif">
 </details>
 <details>
     <summary>Selecting the Countries category</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/08-cat-country.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/08-cat-country.gif">
 </details>
 <details>
     <summary>Selecting the Animals category</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/09-cat-animals.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/09-cat-animals.gif">
 </details>
 <details>
     <summary>Selecting the Disney Movies category</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/10-cat-disney.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/10-cat-disney.gif">
 </details>
 <details>
     <summary>Selecting the Video Games category</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/11-cat-videogames.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/11-cat-videogames.gif">
 </details>
 <details>
     <summary>Making incorrect guesses</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/12-incorrectguess.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/12-incorrectguess.gif">
 </details>
 <details>
     <summary>Making correct guesses</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/13-correctguess.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/13-correctguess.gif">
 </details>
 <details>
     <summary>Making repeat guesses</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/14-repeatedguess.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/14-repeatedguess.gif">
 </details>
 <details>
     <summary>Failing the game (running out of lives/guesses)</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/15-failing.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/15-failing.gif">
 </details>
 <details>
     <summary>Returning to the main menu after failing the game</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/16-failingbacktomenu.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/16-failingbacktomenu.gif">
 </details>
 <details>
     <summary>Winning the game (completing the word)</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/17-finishingword.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/17-finishingword.gif">
 </details>
 <details>
     <summary>Winning the game (guessing the word)</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/18-guessingword.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/18-guessingword.gif">
 </details>
 <details>
     <summary>Entering name</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/19-nameentry.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/19-nameentry.gif">
 </details>
 <details>
     <summary>Entering an invalid name</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/22-invalidname.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/22-invalidname.gif">
 </details>
 <details>
     <summary>Entering a long name</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/23-longname.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/23-longname.gif">
 </details>
 <details>
     <summary>Entering no name</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/24-noname.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/24-noname.gif">
 </details>
 <details>
     <summary>Returning to the main menu after name entry</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/20-returningtomenu.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/20-returningtomenu.gif">
 </details>
 <details>
     <summary>Checking score in scoreboard after winning the game</summary>
-    <img src="https://raw.githubusercontent.com/paulio11/project-3/main/documentation/21-checkingscore.gif">
+    <img src="https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/21-checkingscore.gif">
 </details>
 
 ### Automated Testing
@@ -631,7 +631,7 @@ This program was deployed to [Heroku](https://heroku.com/). You can visit the li
 1. Download your key file then navigate back to your [Heroku Dashboard](https://dashboard.heroku.com/apps) and select your app.
 2. Under Settings, look for **Config Vars** and add the following:
 
-![Image of config vars](https://raw.githubusercontent.com/paulio11/project-3/main/documentation/configvars.png)
+![Image of config vars](https://raw.githubusercontent.com/paulio11/P3-Hangman-Python-Terminal-Game/main/documentation/configvars.png)
 
 **Deployment:**
 1. Once the Config Vars are set, click Deploy.
